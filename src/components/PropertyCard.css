@@ -25,3 +25,37 @@
 
   /* border: 2px solid red; */
 }
+
+.property-info-likes {
+  /* border: 2px solid red; */
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.property-info-favourite-container {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.propertyCard-image-wrapper {
+  position: relative;
+}
+
+.propertyCard-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.property-info-likes {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
