@@ -1,0 +1,31 @@
+.properties-container {
+  /* border: 2px solid red; */
+  height: 100vh;
+}
+
+.propertiesCard-container {
+  /* border: 2px solid red; */
+}
+
+.propertiesCard-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px;
+  /* border: 2px solid blue; */
+}
+
+.image-box {
+  /* border: 2px solid red; */
+}
+
+.image-box-image {
+  border: 2px solid red;
+  width: 200px;
+  height: 200px;
+}
+
+.image-box-image2 {
+  width: 10px;
+  height: 10px;
+}
