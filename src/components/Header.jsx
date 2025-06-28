@@ -2,11 +2,13 @@ import "./Header.css";
 import headerLogo from "../assets/images.png";
 import signInImage from "../assets/defaultSignInImage.png";
 import cabinImage from "../assets/header-cabin-image.png";
-import searchbarIcon from "../assets/search-bar-icon2.png";
-
-import { useEffect } from "react";
+import filter from "../assets/filter.png";
 
 export default function Header() {
+  const handleFilterClick = () => {
+    console.log("hello");
+  };
+
   return (
     <div className="header">
       <div className="header-bar">
@@ -22,16 +24,10 @@ export default function Header() {
         </div>
 
         <div className="header-searchbar">
-          <img
-            className="searchbar-icon"
-            src={searchbarIcon}
-            alt="searchbar icon"
-          />
-          <input
-            className="header-search-bar"
-            type="text"
-            placeholder="search for your next adventure..."
-          />
+          <img className="searchbar-icon" src={filter} alt="searchbar icon" />
+          <button onClick={handleFilterClick} className="filter-button">
+            Filter and sort
+          </button>
         </div>
 
         <div className="logIn">
@@ -39,6 +35,8 @@ export default function Header() {
           <img className="signIn-image" src={signInImage} alt="" />
         </div>
       </div>
+
+      <h2 className="find-a-home-section">Find A Home</h2>
     </div>
   );
 }

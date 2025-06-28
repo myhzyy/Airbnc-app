@@ -23,7 +23,7 @@ export default function Properties() {
   return (
     <div className="propertiesCard-container">
       {properties.map((property) => (
-        <PropertyCard property={property} />
+        <PropertyCard key={property.property_id} property={property} />
       ))}
     </div>
   );

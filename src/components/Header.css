@@ -1,50 +1,11 @@
 .header {
-  /* border: 3px solid red; */
-  /* background-color: #fafafa; */
+  /* border: 2px solid red; */
 }
 
 .header-bar {
-  justify-content: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  /* border: 2px solid red; */
-}
-
-.stays-container {
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  width: 80px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.header-search-bar {
-  border: none;
-  width: 200px;
-  padding: 5px;
-}
-
-.searchbar-icon {
-  width: 25px;
-}
-
-.logIn {
-  /* border: 2px solid red; */
-  width: 100px;
-  display: flex;
-}
-
-.header-searchbar {
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.stays-image {
-  width: 30px;
 }
 
 .header-logo {
@@ -53,8 +14,46 @@
   display: block;
 }
 
-.checkIn-checkOut {
+.stays-container {
+  border-radius: 10px;
+  width: 80px;
   display: flex;
-  /* border: 3px solid red; */
-  width: 120px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.stays-image {
+  width: 30px;
+}
+
+.header-searchbar {
+  display: flex;
+}
+
+.searchbar-icon {
+  width: 20px;
+  background: transparent;
+}
+
+.filter-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.logIn {
+  width: 100px;
+  display: flex;
+}
+
+.signIn-image {
+  width: 20px;
+  height: 20px;
+}
+
+.find-a-home-section {
+  margin-top: 10px;
+  padding-left: 20px;
+  font-size: 1.4rem;
+  font-weight: 300;
 }

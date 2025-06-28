@@ -1,7 +1,7 @@
 import "./PropertyCard.css";
 
 export default function PropertyCard({ property }) {
-  console.log(property);
+  // console.log(property);
 
   return (
     <div className="propertyCard-square">
