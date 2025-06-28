@@ -3,10 +3,14 @@ import headerLogo from "../assets/images.png";
 import signInImage from "../assets/defaultSignInImage.png";
 import cabinImage from "../assets/header-cabin-image.png";
 import filter from "../assets/filter.png";
+import FilterMenu from "./FilterMenu";
+import { useState } from "react";
 
 export default function Header() {
+  const [showFilter, setShowFilter] = useState(false);
+
   const handleFilterClick = () => {
-    console.log("hello");
+    setShowFilter((prev) => !prev);
   };
 
   return (
@@ -35,6 +39,8 @@ export default function Header() {
           <img className="signIn-image" src={signInImage} alt="" />
         </div>
       </div>
+
+      {showFilter && <FilterMenu />}
 
       <h2 className="find-a-home-section">Find A Home</h2>
     </div>
