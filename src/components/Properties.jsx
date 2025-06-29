@@ -3,24 +3,28 @@ import PropertyCard from "./PropertyCard";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function Properties() {
+export default function Properties({ filter, setFilter }) {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        "https://airbnc-oxkw.onrender.com/api/properties"
-      );
+      const baseUrl = "https://airbnc-oxkw.onrender.com/api/properties";
 
-      const { properties } = await response.json();
+      const url =
+        filter === "low"
+          ? `${baseUrl}/sort/price-low-high`
+          : filter === "high"
+          ? `${baseUrl}/sort/price-high-low`
+          : baseUrl;
+
+      const urlResponse = await fetch(url);
+      const { properties } = await urlResponse.json();
+
       setProperties(properties);
-      console.log(properties);
     }
 
     fetchData();
-  }, []);
-
-  console.log(properties);
+  }, [filter]);
 
   /// https://airbnc-oxkw.onrender.com/api/properties/sort/price-low-high
 

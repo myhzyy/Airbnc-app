@@ -1,13 +1,17 @@
 import "./FilterMenu.css";
 import { useState } from "react";
 
-export default function FilterMenu() {
+export default function FilterMenu({
+  filter,
+  setFilter,
+  filterNew,
+  setFilterNew,
+}) {
   const [selected, setSelected] = useState(null);
-
-  console.log(selected);
 
   const handleRadioClick = (value) => {
     setSelected((prev) => (prev === value ? null : value));
+    setFilterNew((prev) => (prev === value ? null : value));
   };
   return (
     <div className="menu">

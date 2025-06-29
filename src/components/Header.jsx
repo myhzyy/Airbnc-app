@@ -2,11 +2,11 @@ import "./Header.css";
 import headerLogo from "../assets/images.png";
 import signInImage from "../assets/defaultSignInImage.png";
 import cabinImage from "../assets/header-cabin-image.png";
-import filter from "../assets/filter.png";
+import filterImage from "../assets/filter.png";
 import FilterMenu from "./FilterMenu";
 import { useState } from "react";
 
-export default function Header() {
+export default function Header({ filter, setFilter }) {
   const [showFilter, setShowFilter] = useState(false);
 
   const handleFilterClick = () => {
@@ -28,7 +28,11 @@ export default function Header() {
         </div>
 
         <div className="header-searchbar">
-          <img className="searchbar-icon" src={filter} alt="searchbar icon" />
+          <img
+            className="searchbar-icon"
+            src={filterImage}
+            alt="searchbar icon"
+          />
           <button onClick={handleFilterClick} className="filter-button">
             Filter and sort
           </button>
@@ -40,7 +44,14 @@ export default function Header() {
         </div>
       </div>
 
-      {showFilter && <FilterMenu />}
+      {showFilter && (
+        <FilterMenu
+          filter={filter}
+          setFilter={setFilter}
+          filterNew={filter}
+          setFilterNew={setFilter}
+        />
+      )}
 
       <h2 className="find-a-home-section">Find A Home</h2>
     </div>
