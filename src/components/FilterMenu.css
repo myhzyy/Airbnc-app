@@ -30,8 +30,11 @@
   accent-color: black;
   width: 12px;
   height: 12px;
+  cursor: pointer;
 }
 
 .filter-options input[type="radio"] {
+  border: 1px solid black;
   transform: scale(1.2);
+  border-radius: 50%;
 }

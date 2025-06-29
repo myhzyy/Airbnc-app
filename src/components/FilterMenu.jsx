@@ -4,6 +4,8 @@ import { useState } from "react";
 export default function FilterMenu() {
   const [selected, setSelected] = useState(null);
 
+  console.log(selected);
+
   const handleRadioClick = (value) => {
     setSelected((prev) => (prev === value ? null : value));
   };
@@ -14,18 +16,18 @@ export default function FilterMenu() {
       <div className="filter-options">
         <label>
           <input
+            type="radio"
             checked={selected === "low"}
             onChange={() => handleRadioClick("low")}
-            type="radio"
-          />{" "}
+          />
           Price: Low to High
         </label>
         <label>
           <input
+            type="radio"
             checked={selected === "high"}
             onChange={() => handleRadioClick("high")}
-            type="radio"
-          />{" "}
+          />
           Price: High to Low
         </label>
       </div>

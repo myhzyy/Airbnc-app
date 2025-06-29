@@ -13,12 +13,16 @@ export default function Properties() {
       );
 
       const { properties } = await response.json();
-
       setProperties(properties);
+      console.log(properties);
     }
 
     fetchData();
   }, []);
+
+  console.log(properties);
+
+  /// https://airbnc-oxkw.onrender.com/api/properties/sort/price-low-high
 
   return (
     <div className="propertiesCard-container">
