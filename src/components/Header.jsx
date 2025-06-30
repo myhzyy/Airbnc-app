@@ -6,11 +6,15 @@ import cabinImage from "../assets/header-cabin-image.png";
 import filterImage from "../assets/filter.png";
 import FilterMenu from "./FilterMenu";
 import LoggedInUser from "./LoggedInUser";
+import menuBarIcon from "../assets/menuBar.png";
+import baseCampLogo from "../assets/menuBar2.png";
+import loggedInUser from "../assets/loggedInUser.png";
 
 import { useState } from "react";
 
 export default function Header({ filter, setFilter, user }) {
   const loggedInEmail = user?.email;
+
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 
@@ -23,24 +27,41 @@ export default function Header({ filter, setFilter, user }) {
   };
 
   return (
-    <div className="header">
-      <div className="header-bar">
-        <img className="header-logo" src={headerLogo} alt="logo" />
-
-        <div className="stays-container">
-          <img className="stays-image" src={cabinImage} alt="stays icon" />
-          <p>Stays</p>
+    <>
+      <div className="header">
+        <div className="header-left-side">
+          <img src={menuBarIcon} alt="Menu" className="header-icon" />
         </div>
 
-        <div className="header-searchbar">
-          <img className="searchbar-icon" src={filterImage} alt="filter" />
-          <button onClick={handleFilterClick} className="filter-button">
-            Filter and sort
-          </button>
+        <div className="header-center">
+          <img src={baseCampLogo} alt="Main logo" className="header-logo" />
         </div>
 
-        <div className="logIn" onClick={handleLoginClick}>
-          {loggedInEmail ? <LoggedInUser user={user} /> : "Log in"}
+        <div className="header-right-side">
+          <img
+            src={filterImage}
+            alt="Filter"
+            className="header-icon-filter"
+            onClick={handleFilterClick}
+            style={{ cursor: "pointer" }}
+          />
+          {loggedInEmail ? (
+            <img
+              src={loggedInUser}
+              alt="User"
+              className="header-icon"
+              onClick={handleLoginClick}
+              style={{ cursor: "pointer" }}
+            />
+          ) : (
+            <img
+              src={signInImage}
+              alt="User"
+              className="header-icon"
+              onClick={handleLoginClick}
+              style={{ cursor: "pointer" }}
+            />
+          )}
         </div>
       </div>
 
@@ -52,6 +73,6 @@ export default function Header({ filter, setFilter, user }) {
           setFilterNew={setFilter}
         />
       )}
-    </div>
+    </>
   );
 }

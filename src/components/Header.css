@@ -1,60 +1,57 @@
 .header {
-  /* border: 2px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 1rem;
+  color: white;
 }
 
-.header-bar {
+.header-left-side,
+.header-center,
+.header-right-side {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+}
+
+.header-left-side {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.header-right-side {
+  flex: 1;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.header-center {
+  flex: 1;
+  justify-content: center;
 }
 
 .header-logo {
-  width: 50px;
-  height: auto;
+  height: 30px;
+  width: auto;
+  background: transparent;
+  border: none;
   display: block;
 }
 
-.stays-container {
-  border-radius: 10px;
-  width: 80px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.stays-image {
-  width: 30px;
-}
-
-.header-searchbar {
-  display: flex;
-}
-
-.searchbar-icon {
-  width: 20px;
-  background: transparent;
-}
-
-.filter-button {
+.header-icon,
+.header-icon-filter {
+  height: 32px;
+  width: auto;
   background: transparent;
   border: none;
-  cursor: pointer;
+  display: block;
 }
 
-.logIn {
-  width: 100px;
-  display: flex;
-  cursor: pointer;
+.header-icon-filter {
+  margin-right: 25px;
+  height: 27px;
 }
 
-.signIn-image {
-  width: 20px;
-  height: 20px;
-}
-
-.find-a-home-section {
-  margin-top: 10px;
-  padding-left: 20px;
-  font-size: 1.4rem;
-  font-weight: 300;
+.login {
+  color: black;
 }
