@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ className, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +28,8 @@ export default function Login({ className, setUser }) {
       if (response.ok) {
         setMessage(`Welcome, ${data.user.email}`);
         setUser(data.user);
+        navigate("/"); /// sign in if the response is OK!
+
         // Optionally save user to context or localStorage
       } else {
         setMessage(data.msg || "Login failed");

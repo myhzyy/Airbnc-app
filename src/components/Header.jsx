@@ -5,11 +5,12 @@ import signInImage from "../assets/defaultSignInImage.png";
 import cabinImage from "../assets/header-cabin-image.png";
 import filterImage from "../assets/filter.png";
 import FilterMenu from "./FilterMenu";
+import LoggedInUser from "./LoggedInUser";
 
 import { useState } from "react";
 
 export default function Header({ filter, setFilter, user }) {
-  console.log(user);
+  const loggedInEamil = user?.email;
 
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
@@ -48,12 +49,15 @@ export default function Header({ filter, setFilter, user }) {
         </div>
 
         <div className="logIn" onClick={handleLoginClick}>
-          <p>Log in</p>
-          <img
-            className="signIn-image"
-            src={signInImage}
-            alt="sign in logo image"
-          />
+          {loggedInEamil ? <LoggedInUser user={user} /> : `Log in`}
+
+          {/* {
+            <img
+              className="signIn-image"
+              src={signInImage}
+              alt="sign in logo image"
+            />
+          } */}
         </div>
       </div>
 
