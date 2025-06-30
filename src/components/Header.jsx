@@ -1,4 +1,5 @@
 import "./Header.css";
+import { useNavigate } from "react-router-dom";
 import headerLogo from "../assets/images.png";
 import signInImage from "../assets/defaultSignInImage.png";
 import cabinImage from "../assets/header-cabin-image.png";
@@ -9,9 +10,14 @@ import { useState } from "react";
 
 export default function Header({ filter, setFilter }) {
   const [showFilter, setShowFilter] = useState(false);
+  const navigate = useNavigate();
 
   const handleFilterClick = () => {
     setShowFilter((prev) => !prev);
+  };
+
+  const handleLoginClick = () => {
+    navigate("/login");
   };
 
   return (
@@ -39,9 +45,13 @@ export default function Header({ filter, setFilter }) {
           </button>
         </div>
 
-        <div className="logIn">
+        <div className="logIn" onClick={handleLoginClick}>
           <p>Log in</p>
-          <img className="signIn-image" src={signInImage} alt="" />
+          <img
+            className="signIn-image"
+            src={signInImage}
+            alt="sign in logo image"
+          />
         </div>
       </div>
 

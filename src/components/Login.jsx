@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login() {
+export default function Login({ className }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -34,7 +34,7 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
       <input
         type="email"

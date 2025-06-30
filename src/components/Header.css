@@ -44,6 +44,7 @@
 .logIn {
   width: 100px;
   display: flex;
+  cursor: pointer;
 }
 
 .signIn-image {

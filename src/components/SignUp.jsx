@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login() {
+export default function Login({ className }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -23,10 +23,9 @@ export default function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        setMessage(`Welcome, ${data.user.email}`);
-        // Optionally save user to context or localStorage
+        setMessage("Thanks for signing up!");
       } else {
-        setMessage(data.msg || "Login failed");
+        setMessage(data.msg || "Signup failed");
       }
     } catch (err) {
       setMessage("Something went wrong");
@@ -34,8 +33,8 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
+    <form className={className} onSubmit={handleSubmit}>
+      <h2>Sign Up!</h2>
       <input
         type="email"
         placeholder="Email"
@@ -50,7 +49,7 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Log in</button>
+      <button type="submit">Sign me up!</button>
       {message && <p>{message}</p>}
     </form>
   );
