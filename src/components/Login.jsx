@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login({ className }) {
+export default function Login({ className, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -24,6 +24,7 @@ export default function Login({ className }) {
 
       if (response.ok) {
         setMessage(`Welcome, ${data.user.email}`);
+        setUser(data.user);
         // Optionally save user to context or localStorage
       } else {
         setMessage(data.msg || "Login failed");

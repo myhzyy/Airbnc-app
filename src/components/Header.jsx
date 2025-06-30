@@ -8,7 +8,9 @@ import FilterMenu from "./FilterMenu";
 
 import { useState } from "react";
 
-export default function Header({ filter, setFilter }) {
+export default function Header({ filter, setFilter, user }) {
+  console.log(user);
+
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 

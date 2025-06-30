@@ -8,16 +8,17 @@ import Home from "./components/Home";
 
 function App() {
   const [filter, setFilter] = useState("");
+  const [user, setUser] = useState(null);
 
   return (
     <>
       <Routes>
         <Route
           path="/"
-          element={<Home setFilter={setFilter} filter={filter} />}
+          element={<Home setFilter={setFilter} filter={filter} user={user} />}
         />
 
-        <Route path="/login" element={<AuthPage />} />
+        <Route path="/login" element={<AuthPage setUser={setUser} />} />
       </Routes>
     </>
   );

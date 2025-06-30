@@ -4,7 +4,7 @@ import SignUp from "./SignUp";
 import "./AuthPage.css";
 import baseCampLogo from "../assets/baseCampLogo.png";
 
-export default function AuthPage() {
+export default function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export default function AuthPage() {
         <p className="basecamp-signin-text">Sign up below!</p>
 
         {showLogin ? (
-          <Login className="login-form" />
+          <Login className="login-form" setUser={setUser} />
         ) : (
           <SignUp className="login-form" setShowLogin={setShowLogin} />
         )}
