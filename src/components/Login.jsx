@@ -42,6 +42,7 @@ export default function Login({ className, setUser }) {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
+
       <input
         type="email"
         placeholder="Email"

@@ -49,7 +49,7 @@ export default function Header({ filter, setFilter, user }) {
         </div>
 
         <div className="logIn" onClick={handleLoginClick}>
-          {loggedInEamil ? <LoggedInUser user={user} /> : `Log in`}
+          {loggedInEamil ? <LoggedInUser user={user} /> : "Log in"}
 
           {/* {
             <img

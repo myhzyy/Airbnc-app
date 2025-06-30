@@ -3,9 +3,14 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import "./AuthPage.css";
 import baseCampLogo from "../assets/baseCampLogo.png";
+import { Navigate } from "react-router-dom";
 
 export default function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(false);
+
+  const handleLoginClick = () => {
+    setShowLogin(() => setShowLogin(true));
+  };
 
   return (
     <div className="auth-page-container">
@@ -19,6 +24,7 @@ export default function AuthPage({ setUser }) {
         ) : (
           <SignUp className="login-form" setShowLogin={setShowLogin} />
         )}
+        {!showLogin && <p onClick={handleLoginClick}>Log in</p>}
       </div>
     </div>
   );
