@@ -5,8 +5,6 @@ import Properties from "./components/Properties";
 function App() {
   const [filter, setFilter] = useState("");
 
-  console.log(filter);
-
   return (
     <>
       <Header setFilter={setFilter} filter={filter} />

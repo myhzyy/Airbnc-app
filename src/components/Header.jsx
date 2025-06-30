@@ -4,6 +4,7 @@ import signInImage from "../assets/defaultSignInImage.png";
 import cabinImage from "../assets/header-cabin-image.png";
 import filterImage from "../assets/filter.png";
 import FilterMenu from "./FilterMenu";
+
 import { useState } from "react";
 
 export default function Header({ filter, setFilter }) {
