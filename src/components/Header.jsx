@@ -10,8 +10,7 @@ import LoggedInUser from "./LoggedInUser";
 import { useState } from "react";
 
 export default function Header({ filter, setFilter, user }) {
-  const loggedInEamil = user?.email;
-
+  const loggedInEmail = user?.email;
   const [showFilter, setShowFilter] = useState(false);
   const navigate = useNavigate();
 
@@ -26,38 +25,22 @@ export default function Header({ filter, setFilter, user }) {
   return (
     <div className="header">
       <div className="header-bar">
-        <img className="header-logo" src={headerLogo} alt="image" />
+        <img className="header-logo" src={headerLogo} alt="logo" />
 
         <div className="stays-container">
-          <img
-            className="stays-image"
-            src={cabinImage}
-            alt="header cabin image"
-          />
+          <img className="stays-image" src={cabinImage} alt="stays icon" />
           <p>Stays</p>
         </div>
 
         <div className="header-searchbar">
-          <img
-            className="searchbar-icon"
-            src={filterImage}
-            alt="searchbar icon"
-          />
+          <img className="searchbar-icon" src={filterImage} alt="filter" />
           <button onClick={handleFilterClick} className="filter-button">
             Filter and sort
           </button>
         </div>
 
         <div className="logIn" onClick={handleLoginClick}>
-          {loggedInEamil ? <LoggedInUser user={user} /> : "Log in"}
-
-          {/* {
-            <img
-              className="signIn-image"
-              src={signInImage}
-              alt="sign in logo image"
-            />
-          } */}
+          {loggedInEmail ? <LoggedInUser user={user} /> : "Log in"}
         </div>
       </div>
 
@@ -69,8 +52,6 @@ export default function Header({ filter, setFilter, user }) {
           setFilterNew={setFilter}
         />
       )}
-
-      <h2 className="find-a-home-section">Find A Home</h2>
     </div>
   );
 }
