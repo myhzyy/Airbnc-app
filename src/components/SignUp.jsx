@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login({ className }) {
+export default function Login({ className, onSuccess, setShowLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -24,6 +24,7 @@ export default function Login({ className }) {
 
       if (response.ok) {
         setMessage("Thanks for signing up!");
+        setShowLogin(() => setShowLogin(true));
       } else {
         setMessage(data.msg || "Signup failed");
       }
