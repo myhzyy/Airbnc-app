@@ -9,14 +9,19 @@ import LoggedInUser from "./LoggedInUser";
 import menuBarIcon from "../assets/menuBar.png";
 import baseCampLogo from "../assets/menuBar2.png";
 import loggedInUser from "../assets/loggedInUser.png";
+import MenuSideBar from "../components/MenuSideBar";
 
 import { useState } from "react";
 
 export default function Header({ filter, setFilter, user }) {
   const loggedInEmail = user?.email;
-
   const [showFilter, setShowFilter] = useState(false);
+  const [showMenu, setShowMenu] = useState(true);
   const navigate = useNavigate();
+
+  const handleShowMenu = () => {
+    setShowMenu((prev) => !prev);
+  };
 
   const handleFilterClick = () => {
     setShowFilter((prev) => !prev);
@@ -30,7 +35,12 @@ export default function Header({ filter, setFilter, user }) {
     <>
       <div className="header">
         <div className="header-left-side">
-          <img src={menuBarIcon} alt="Menu" className="header-icon" />
+          <img
+            onClick={handleShowMenu}
+            src={menuBarIcon}
+            alt="Menu"
+            className="header-icon"
+          />
         </div>
 
         <div className="header-center">
@@ -73,6 +83,8 @@ export default function Header({ filter, setFilter, user }) {
           setFilterNew={setFilter}
         />
       )}
+
+      <MenuSideBar isOpen={showMenu} onClose={() => setShowMenu(false)} />
     </>
   );
 }
