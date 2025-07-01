@@ -5,6 +5,7 @@ import Properties from "./components/Properties";
 import Login from "./components/Login";
 import AuthPage from "./components/AuthPage";
 import Home from "./components/Home";
+import PropertyPage from "./components/PropertyPage";
 
 function App() {
   const [filter, setFilter] = useState("");
@@ -19,6 +20,7 @@ function App() {
         />
 
         <Route path="/login" element={<AuthPage setUser={setUser} />} />
+        <Route path="/property/:id" element={<PropertyPage />} />
       </Routes>
     </>
   );
