@@ -48,13 +48,13 @@ export default function Header({ filter, setFilter, user }) {
         </div>
 
         <div className="header-right-side">
-          <img
+          {/* <img
             src={filterImage}
             alt="Filter"
             className="header-icon-filter"
             onClick={handleFilterClick}
             style={{ cursor: "pointer" }}
-          />
+          /> */}
           {loggedInEmail ? (
             <img
               src={loggedInUser}
