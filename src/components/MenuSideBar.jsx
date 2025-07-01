@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "./MenuSideBar.css";
 
-export default function MenuSideBar({ isOpen, onClose }) {
+export default function MenuSideBar({ isOpen, onClose, setShowFilter }) {
   const navigate = useNavigate();
+
+  const handleFilterClick = () => {
+    setShowFilter((prev) => !prev);
+    onClose();
+  };
 
   const handleLoginRoute = () => {
     navigate("/login");
@@ -19,7 +24,7 @@ export default function MenuSideBar({ isOpen, onClose }) {
         <button onClick={onClose}>×</button>
         <ul>
           <li onClick={handleLoginRoute}>Log in!</li>
-          <li>Filter</li>
+          <li onClick={handleFilterClick}>Filter</li>
           <li>Contact us!</li>
         </ul>
       </div>

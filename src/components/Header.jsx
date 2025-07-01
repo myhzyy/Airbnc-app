@@ -16,7 +16,7 @@ import { useState } from "react";
 export default function Header({ filter, setFilter, user }) {
   const loggedInEmail = user?.email;
   const [showFilter, setShowFilter] = useState(false);
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
   const handleShowMenu = () => {
@@ -84,7 +84,11 @@ export default function Header({ filter, setFilter, user }) {
         />
       )}
 
-      <MenuSideBar isOpen={showMenu} onClose={() => setShowMenu(false)} />
+      <MenuSideBar
+        setShowFilter={setShowFilter}
+        isOpen={showMenu}
+        onClose={() => setShowMenu(false)}
+      />
     </>
   );
 }
