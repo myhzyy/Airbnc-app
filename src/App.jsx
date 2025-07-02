@@ -11,6 +11,8 @@ function App() {
   const [filter, setFilter] = useState("");
   const [user, setUser] = useState(null);
 
+  console.log(user);
+
   return (
     <>
       <Routes>

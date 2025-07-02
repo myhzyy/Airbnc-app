@@ -37,6 +37,7 @@
   background: transparent;
   border: none;
   display: block;
+  cursor: pointer;
 }
 
 .header-icon,
@@ -46,6 +47,7 @@
   background: transparent;
   border: none;
   display: block;
+  cursor: pointer;
 }
 
 .header-icon-filter {

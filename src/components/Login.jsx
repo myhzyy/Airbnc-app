@@ -28,9 +28,7 @@ export default function Login({ className, setUser }) {
       if (response.ok) {
         setMessage(`Welcome, ${data.user.email}`);
         setUser(data.user);
-        navigate("/"); /// sign in if the response is OK!
-
-        // Optionally save user to context or localStorage
+        navigate("/");
       } else {
         setMessage(data.msg || "Login failed");
       }

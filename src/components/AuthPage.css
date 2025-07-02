@@ -68,3 +68,18 @@
 .login-form button:hover {
   background-color: #333;
 }
+
+.test-account-info {
+  margin-top: 150px;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.test-label {
+  font-weight: bold;
+}
+
+.test-label span {
+  font-weight: 300;
+}

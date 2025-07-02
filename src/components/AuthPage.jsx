@@ -36,6 +36,17 @@ export default function AuthPage({ setUser }) {
           <SignUp className="login-form" setShowLogin={setShowLogin} />
         )}
         {!showLogin && <p onClick={handleLoginClick}>Log in</p>}
+        <div className="test-account-info">
+          <p className="test-label">
+            Test account: <span>(use this)</span>
+          </p>
+          <p>
+            <strong>Email:</strong> test@test.com
+          </p>
+          <p>
+            <strong>Password:</strong> test
+          </p>
+        </div>
       </div>
     </div>
   );
