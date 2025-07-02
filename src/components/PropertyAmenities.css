@@ -4,22 +4,23 @@
 }
 
 .amenities-container h3 {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .amenities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 16px;
 }
 
 .amenity-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 0.95rem;
+  color: #333;
 }
 
 .amenity-icon {

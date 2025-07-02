@@ -31,6 +31,10 @@ export default function Header({ filter, setFilter, user }) {
     navigate("/login");
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <div className="header">
@@ -44,7 +48,12 @@ export default function Header({ filter, setFilter, user }) {
         </div>
 
         <div className="header-center">
-          <img src={baseCampLogo} alt="Main logo" className="header-logo" />
+          <img
+            onClick={handleLogoClick}
+            src={baseCampLogo}
+            alt="Main logo"
+            className="header-logo"
+          />
         </div>
 
         <div className="header-right-side">

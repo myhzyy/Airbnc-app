@@ -4,18 +4,29 @@ import SignUp from "./SignUp";
 import "./AuthPage.css";
 import baseCampLogo from "../assets/baseCampLogo.png";
 import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
     setShowLogin(() => setShowLogin(true));
   };
 
+  const handleLogoClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className="auth-page-container">
       <div className="auth-page-contents">
-        <img className="baseCampLogo" src={baseCampLogo} alt="BaseCamp Logo" />
+        <img
+          onClick={handleLogoClick}
+          className="baseCampLogo"
+          src={baseCampLogo}
+          alt="BaseCamp Logo"
+        />
         <h1 className="basecamp-header-text">BASECAMP LOGIN</h1>
         <p className="basecamp-signin-text">Sign up below!</p>
 

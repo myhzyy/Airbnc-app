@@ -6,6 +6,32 @@ export default function PropertyAmenities() {
   const { id } = useParams();
   const [amenities, setAmenities] = useState([]);
 
+  const iconMap = {
+    WiFi: "📶",
+    TV: "📺",
+    Kitchen: "🍳",
+    "Washing Machine": "🧺",
+    Parking: "🚗",
+    Iron: "🧼",
+    "Mini fridge": "🧊",
+    "Coffee maker": "☕",
+    "Air conditioning": "❄️",
+    Dryer: "🔥",
+    Fireplace: "🔥",
+    Garden: "🌳",
+    "Beach access": "🏖️",
+    Desk: "🪑",
+    BBQ: "🍖",
+    "Outdoor seating": "🪴",
+    "Infinity pool": "🏊",
+    "Ski-in/Ski-out": "🎿",
+    "Work desk": "💻",
+    Library: "📚",
+    "Hot tub": "🛁",
+    "Pet-friendly": "🐶",
+    default: "✨",
+  };
+
   useEffect(() => {
     async function fetchAmenities() {
       const response = await fetch(
@@ -25,12 +51,15 @@ export default function PropertyAmenities() {
     <div className="amenities-container">
       <h3>Quick facts</h3>
       <div className="amenities-grid">
-        {amenities.map((item, i) => (
-          <div className="amenity-item" key={i}>
-            <span className="amenity-icon">🏠</span>
-            <span className="amenity-label">{item.amenity}</span>
-          </div>
-        ))}
+        {amenities.map((item, i) => {
+          const icon = iconMap[item.amenity] || iconMap.default;
+          return (
+            <div className="amenity-item" key={i}>
+              <span className="amenity-icon">{icon}</span>
+              <span className="amenity-label">{item.amenity}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
