@@ -1,14 +1,14 @@
 .property-page-container {
   padding: 10px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   height: auto;
 }
 
 .property-info-section {
   display: flex;
   flex-direction: column;
-  align-items: center; /* ✅ center horizontally */
-  text-align: center; /* ✅ optional: center text */
+  align-items: center;
+  text-align: center;
 }
 
 .property-page-container img {

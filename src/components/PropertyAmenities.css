@@ -1,0 +1,27 @@
+.amenities-container {
+  padding: 20px;
+  background-color: white;
+}
+
+.amenities-container h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.amenity-icon {
+  font-size: 1.2rem;
+}

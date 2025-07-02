@@ -1,0 +1,26 @@
+.reviews-button-container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.reviews-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #ff385c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.reviews-button:hover {
+  background-color: #e03150;
+  transform: translateY(-2px);
+}
+
+.reviews-button:active {
+  transform: scale(0.98);
+}
