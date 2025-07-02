@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import "./MenuSideBar.css";
+import NotLoggedInSideBar from "./NotLoggedInSideBar";
+import IsLoggedInSideBar from "./IsLoggedInSideBar"; // ✅ Capitalized properly
 
-export default function MenuSideBar({ isOpen, onClose, setShowFilter }) {
+export default function MenuSideBar({ isOpen, onClose, setShowFilter, user }) {
   const navigate = useNavigate();
 
   const handleFilterClick = () => {
@@ -22,11 +24,15 @@ export default function MenuSideBar({ isOpen, onClose, setShowFilter }) {
       ></div>
       <div className={`sideBarContainer ${isOpen ? "open" : ""}`}>
         <button onClick={onClose}>×</button>
-        <ul>
-          <li onClick={handleLoginRoute}>Log in!</li>
-          <li onClick={handleFilterClick}>Filter</li>
-          <li>Contact us!</li>
-        </ul>
+
+        {user ? (
+          <IsLoggedInSideBar onFilter={handleFilterClick} user={user} />
+        ) : (
+          <NotLoggedInSideBar
+            onLogin={handleLoginRoute}
+            onFilter={handleFilterClick}
+          />
+        )}
       </div>
     </>
   );

@@ -94,6 +94,7 @@ export default function Header({ filter, setFilter, user }) {
       )}
 
       <MenuSideBar
+        user={user}
         setShowFilter={setShowFilter}
         isOpen={showMenu}
         onClose={() => setShowMenu(false)}
