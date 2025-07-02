@@ -1,11 +1,10 @@
-import "./ReviewsButton.css";
+import "./ClickButton.css";
 
-// ReviewsButton.jsx
-export default function ReviewsButton({ handleClick }) {
+export default function ReviewsButton({ handleClick, label }) {
   return (
     <div className="reviews-button-container">
       <button className="reviews-button" onClick={handleClick}>
-        See reviews!
+        {label}
       </button>
     </div>
   );

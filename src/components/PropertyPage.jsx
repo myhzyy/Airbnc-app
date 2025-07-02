@@ -3,13 +3,15 @@ import { useParams } from "react-router-dom";
 import "./PropertyPage.css";
 import Header from "./Header";
 import PropertyReviews from "./PropertyReviews";
-import ReviewsButton from "./ReviewsButton";
+import ClickButton from "./ClickButton";
 import PropertyAmenities from "./PropertyAmenities";
+import BookingCalendar from "../components/FormattedBookingsCalendar";
 
 export default function PropertyPage() {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [showReviews, setShowReviews] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false); // ✅ correct spelling
 
   useEffect(() => {
     async function fetchProperty() {
@@ -41,9 +43,24 @@ export default function PropertyPage() {
       <PropertyAmenities />
 
       {showReviews ? (
-        <PropertyReviews />
+        <PropertyReviews setShowReviews={setShowReviews} />
       ) : (
-        <ReviewsButton handleClick={() => setShowReviews(true)} />
+        <ClickButton
+          label="See Reviews!"
+          handleClick={() => setShowReviews(true)}
+        />
+      )}
+
+      {showCalendar ? (
+        <BookingCalendar
+          setShowCalendar={setShowCalendar}
+          propertyId={property.property_id}
+        />
+      ) : (
+        <ClickButton
+          label="Show Availability!"
+          handleClick={() => setShowCalendar(true)}
+        />
       )}
     </>
   );

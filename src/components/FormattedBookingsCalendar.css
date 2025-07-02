@@ -1,0 +1,14 @@
+.booking-calendar {
+  width: 280px;
+  overflow: hidden;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 0;
+}
+
+.booking-calendar .rdrCalendarWrapper {
+  width: 100%;
+  max-width: 100% !important;
+  font-size: 13px;
+  box-sizing: border-box;
+}

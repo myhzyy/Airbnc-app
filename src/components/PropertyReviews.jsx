@@ -1,10 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./PropertyReviews.css";
+import CloseButton from "./CloseButton";
 
-export default function PropertyReviews() {
+export default function PropertyReviews({ setShowReviews }) {
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
+
+  const handleClose = () => {
+    setShowReviews(false); // ✅ correctly closes the section
+  };
 
   useEffect(() => {
     async function fetchReviews() {
@@ -13,46 +18,36 @@ export default function PropertyReviews() {
       );
 
       const data = await res.json();
-
       setReviews(data.reviews);
     }
 
     fetchReviews();
   }, [id]);
 
-  console.log(reviews);
-
   return (
     <div className="review-section">
-      {reviews.map((review) => {
-        return (
-          <div className="review-card" key={review.review_id}>
-            <img src={review.guest_avatar} alt="review guest" />
+      {reviews.map((review) => (
+        <div className="review-card" key={review.review_id}>
+          <img src={review.guest_avatar} alt="review guest" />
 
-            <div className="review-content">
-              <h1>{review.guest}</h1>
+          <div className="review-content">
+            <h1>{review.guest}</h1>
 
-              <div className="star-section">
-                <p className="review-stars">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <span key={i}>{i < review.rating ? "⭐" : "☆"}</span>
-                  ))}
-                </p>
-                <p>{new Date(review.created_at).toLocaleDateString()}</p>
-              </div>
-              <h2>{review.comment}</h2>
+            <div className="star-section">
+              <p className="review-stars">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <span key={i}>{i < review.rating ? "⭐" : "☆"}</span>
+                ))}
+              </p>
+              <p>{new Date(review.created_at).toLocaleDateString()}</p>
             </div>
+
+            <h2>{review.comment}</h2>
           </div>
-        );
-      })}
+        </div>
+      ))}
+
+      <CloseButton onClick={handleClose} label="Close Reviews" />
     </div>
   );
 }
-
-/// `https://airbnc-oxkw.onrender.com/api/properties/${id}/reviews`
-///
-///  <div className="review=content">
-/// <h1>{review.guest}</h1>
-/// <p>Rating: {review.rating}/5</p>
-/// <h2>{review.comment}</h2>
-/// </div>
