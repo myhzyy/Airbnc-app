@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./PropertyPage.css";
+import Header from "./Header";
+import PropertyReviews from "./PropertyReviews";
 
 export default function PropertyPage() {
   const { id } = useParams();
@@ -21,12 +23,20 @@ export default function PropertyPage() {
 
   if (!property) return <p>Loading...</p>;
 
-  console.log(property);
-
   return (
-    <div className="property-page-container">
-      <h1>{property.property_name}</h1>
-      <img src={property.images} alt="" />
-    </div>
+    <>
+      <Header />
+      <div className="property-page-container">
+        <img src={property.images} alt="" />
+
+        <div className="property-info-section">
+          <h1>{property.property_name}</h1>
+          <h2>{property.description}</h2>
+          <h3>{property.location}</h3>
+          <p>£{property.price_per_night}</p>
+        </div>
+      </div>
+      <PropertyReviews />
+    </>
   );
 }

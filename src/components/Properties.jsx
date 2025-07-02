@@ -27,6 +27,7 @@ export default function Properties({ filter, setFilter }) {
   }, [filter]);
 
   /// https://airbnc-oxkw.onrender.com/api/properties/sort/price-low-high
+  /// https://airbnc-oxkw.onrender.com/api/properties/1/reviews
 
   return (
     <div className="propertiesCard-container">
