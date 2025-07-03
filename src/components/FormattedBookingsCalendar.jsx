@@ -9,6 +9,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function BookingCalendar({ propertyId, setShowCalendar }) {
   const [bookedDates, setBookedDates] = useState([]);
+
+  const [selection, setSelection] = useState({
+    startDate: new Date(),
+    endDate: addDays(new Date(), 1),
+    key: "selection",
+  });
+
   const navigate = useNavigate();
 
   const handleNotLoggedInCalendarClick = () => {
