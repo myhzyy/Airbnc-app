@@ -20,7 +20,7 @@ function App() {
         />
 
         <Route path="/login" element={<AuthPage setUser={setUser} />} />
-        <Route path="/property/:id" element={<PropertyPage />} />
+        <Route path="/property/:id" element={<PropertyPage user={user} />} />
       </Routes>
     </>
   );

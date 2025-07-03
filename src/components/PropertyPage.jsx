@@ -7,7 +7,9 @@ import ClickButton from "./ClickButton";
 import PropertyAmenities from "./PropertyAmenities";
 import BookingCalendar from "../components/FormattedBookingsCalendar";
 
-export default function PropertyPage() {
+export default function PropertyPage({ user }) {
+  console.log(user);
+
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [showReviews, setShowReviews] = useState(false);
@@ -59,6 +61,7 @@ export default function PropertyPage() {
 
       {showCalendar && (
         <BookingCalendar
+          user={user}
           setShowCalendar={setShowCalendar}
           propertyId={property.property_id}
         />
