@@ -42,24 +42,25 @@ export default function PropertyPage() {
       </div>
       <PropertyAmenities />
 
-      {showReviews ? (
-        <PropertyReviews setShowReviews={setShowReviews} />
-      ) : (
-        <ClickButton
-          label="See Reviews!"
-          handleClick={() => setShowReviews(true)}
-        />
+      {!showReviews && !showCalendar && (
+        <div className="button-row">
+          <ClickButton
+            label="See Reviews!"
+            handleClick={() => setShowReviews(true)}
+          />
+          <ClickButton
+            label="Show Availability!"
+            handleClick={() => setShowCalendar(true)}
+          />
+        </div>
       )}
 
-      {showCalendar ? (
+      {showReviews && <PropertyReviews setShowReviews={setShowReviews} />}
+
+      {showCalendar && (
         <BookingCalendar
           setShowCalendar={setShowCalendar}
           propertyId={property.property_id}
-        />
-      ) : (
-        <ClickButton
-          label="Show Availability!"
-          handleClick={() => setShowCalendar(true)}
         />
       )}
     </>

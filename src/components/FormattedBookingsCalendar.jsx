@@ -9,25 +9,34 @@ import CloseButton from "./CloseButton";
 export default function BookingCalendar({ propertyId, setShowCalendar }) {
   const [bookedDates, setBookedDates] = useState([]);
 
-  const handleClose = () => {
-    setShowCalendar(false); // ✅ spelling matches prop name
-  };
-
   useEffect(() => {
     async function fetchBookings() {
-      const res = await fetch(
-        `https://airbnc-oxkw.onrender.com/api/properties/${propertyId}/bookings`
-      );
-      const data = await res.json();
+      try {
+        const res = await fetch(
+          `https://airbnc-oxkw.onrender.com/api/properties/${propertyId}/bookings`
+        );
+        const data = await res.json();
 
-      const allDates = data.bookings.rows.flatMap((booking) =>
-        eachDayOfInterval({
-          start: new Date(booking.check_in_date),
-          end: new Date(booking.check_out_date),
-        })
-      );
+        const disabledDates = data.bookings.rows.flatMap((booking) => {
+          const start = new Date(booking.check_in_date);
+          const end = new Date(booking.check_out_date);
 
-      setBookedDates(allDates);
+          const days = eachDayOfInterval({ start, end });
+
+          return days.map((date) => {
+            return new Date(
+              date.getFullYear(),
+              date.getMonth(),
+              date.getDate()
+            );
+          });
+        });
+
+        // console.log(disabledDates);
+        setBookedDates(disabledDates);
+      } catch (err) {
+        console.error("Failed to fetch bookings", err);
+      }
     }
 
     fetchBookings();
@@ -47,10 +56,10 @@ export default function BookingCalendar({ propertyId, setShowCalendar }) {
             key: "selection",
           },
         ]}
-        disabledDates={bookedDates}
         minDate={new Date()}
+        disabledDates={bookedDates}
       />
-      <CloseButton onClick={handleClose} label="Close Availability" />
+      <CloseButton onClick={() => setShowCalendar(false)} label="Close" />
     </div>
   );
 }
