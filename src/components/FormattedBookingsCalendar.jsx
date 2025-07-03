@@ -5,9 +5,15 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "./FormattedBookingsCalendar.css";
 import CloseButton from "./CloseButton";
+import { useNavigate } from "react-router-dom";
 
 export default function BookingCalendar({ propertyId, setShowCalendar }) {
   const [bookedDates, setBookedDates] = useState([]);
+  const navigate = useNavigate();
+
+  const handleNotLoggedInCalendarClick = () => {
+    navigate("/login");
+  };
 
   useEffect(() => {
     async function fetchBookings() {
@@ -58,7 +64,9 @@ export default function BookingCalendar({ propertyId, setShowCalendar }) {
         ]}
         minDate={new Date()}
         disabledDates={bookedDates}
+        onChange={handleNotLoggedInCalendarClick}
       />
+
       <CloseButton onClick={() => setShowCalendar(false)} label="Close" />
     </div>
   );
