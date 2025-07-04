@@ -18,6 +18,7 @@ export default function UserBookings({ bookings }) {
             const url = `https://airbnc-oxkw.onrender.com/api/properties/${id}`;
             const res = await fetch(url);
             const data = await res.json();
+            console.log(data);
 
             return { id, name: data.propertyId.property_name };
           })
