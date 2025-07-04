@@ -22,7 +22,7 @@ function App() {
 
         <Route path="/login" element={<AuthPage setUser={setUser} />} />
         <Route path="/property/:id" element={<PropertyPage user={user} />} />
-        <Route path="/myBookings" element={<MyBookings />} />
+        <Route path="/myBookings" element={<MyBookings user={user} />} />
       </Routes>
     </>
   );
