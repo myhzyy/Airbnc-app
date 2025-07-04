@@ -2,10 +2,12 @@
   padding: 1rem 2rem;
   max-width: 700px;
   margin: 0 auto;
-  /* border: 2px solid red; */
 }
 
 .booking-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -13,11 +15,28 @@
   margin-bottom: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
-  /* border: 2px solid red; */
 }
 
 .booking-card:hover {
   transform: scale(1.01);
+}
+
+.booking-properties-info {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.booking-properties-image {
+  width: 150px;
+  flex-shrink: 0;
+}
+
+.property-booking-image {
+  width: 100%;
+  height: auto;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .booking-card p {
@@ -32,7 +51,6 @@
 .bookings-header {
   margin-top: 10px;
   font-size: 1.5rem;
-  /* border: 2px solid red; */
 }
 
 .booking-property-title {
