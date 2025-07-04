@@ -8,9 +8,11 @@ import CloseButton from "./CloseButton";
 import { useNavigate } from "react-router-dom";
 
 export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
-  console.log(user);
-
   const [bookedDates, setBookedDates] = useState([]);
+
+  const handleLoginHereButton = () => {
+    navigate("/login");
+  };
 
   const [selection, setSelection] = useState({
     startDate: new Date(),
@@ -110,7 +112,17 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
       </button>
 
       {!user && (
-        <p className="login-reminder">Please log in to book this property.</p>
+        <>
+          <div className="login-reminder">
+            <p>Please log in to book this property.</p>
+            <button
+              onClick={handleLoginHereButton}
+              className="login-reminder-button"
+            >
+              Log in here!
+            </button>
+          </div>
+        </>
       )}
 
       <CloseButton onClick={() => setShowCalendar(false)} label="Close" />

@@ -10,8 +10,8 @@
 }
 
 .booking-calendar .rdrCalendarWrapper {
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 100%;
+  max-width: 100%;
   font-size: 12px;
   box-sizing: border-box;
   overflow: hidden;
@@ -20,16 +20,75 @@
 }
 
 .rdrMonth {
-  padding: 0 !important;
+  padding: 0;
 }
 
 .rdrWeekDays,
 .rdrDays {
-  margin: 0 !important;
-  gap: 0;
+  margin: 0;
 }
 
 .rdrDay {
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0;
+  padding: 0;
+}
+
+.rdrDayNumber span {
+  border: none;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+.rdrDayToday .rdrDayNumber span {
+  border: none;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+.rdrDay.rdrInRange span {
+  background-color: #d0e6ff;
+  color: black;
+  border-radius: 0;
+}
+
+.rdrDayToday .rdrDayNumber span {
+  border: none;
+  border-bottom: none;
+  box-shadow: none;
+  color: inherit;
+}
+
+.confirm-booking-button {
+  border: none;
+  width: 100px;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #ff385c;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: inline-block;
+  line-height: 1;
+}
+
+.confirm-booking-button:hover {
+  background-color: #e03150;
+  transform: translateY(-1px) scale(1.02);
+}
+
+.login-reminder {
+  display: flex;
+  /* border: 2px solid red; */
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.login-reminder-button {
+  border-radius: 10%;
+  font-size: 0.65rem;
+  font-weight: 700;
 }

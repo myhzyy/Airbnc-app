@@ -8,12 +8,10 @@ import PropertyAmenities from "./PropertyAmenities";
 import BookingCalendar from "../components/FormattedBookingsCalendar";
 
 export default function PropertyPage({ user }) {
-  console.log(user);
-
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [showReviews, setShowReviews] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false); // ✅ correct spelling
+  const [showCalendar, setShowCalendar] = useState(false);
 
   useEffect(() => {
     async function fetchProperty() {
@@ -32,7 +30,7 @@ export default function PropertyPage({ user }) {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <div className="property-page-container">
         <img src={property.images} alt="" />
         <div className="property-info-section">

@@ -15,6 +15,7 @@ import { useState } from "react";
 
 export default function Header({ filter, setFilter, user }) {
   const loggedInEmail = user?.email;
+
   const [showFilter, setShowFilter] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
