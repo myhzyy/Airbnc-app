@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import AuthPage from "./components/AuthPage";
 import Home from "./components/Home";
 import PropertyPage from "./components/PropertyPage";
+import MyBookings from "./components/MyBookings";
 
 function App() {
   const [filter, setFilter] = useState("");
@@ -21,6 +22,7 @@ function App() {
 
         <Route path="/login" element={<AuthPage setUser={setUser} />} />
         <Route path="/property/:id" element={<PropertyPage user={user} />} />
+        <Route path="/myBookings" element={<MyBookings />} />
       </Routes>
     </>
   );

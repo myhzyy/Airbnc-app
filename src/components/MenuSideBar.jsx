@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./MenuSideBar.css";
 import NotLoggedInSideBar from "./NotLoggedInSideBar";
-import IsLoggedInSideBar from "./IsLoggedInSideBar"; // ✅ Capitalized properly
+import IsLoggedInSideBar from "./IsLoggedInSideBar";
 
 export default function MenuSideBar({ isOpen, onClose, setShowFilter, user }) {
   const navigate = useNavigate();
