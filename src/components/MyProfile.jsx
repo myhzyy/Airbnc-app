@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import loggedInUser from "../assets/loggedInUser.png";
 import "./MyProfile.css";
 
 export default function UserProfile({ user }) {
   const profileId = user.auth_user_id;
-
   const [stats, setStats] = useState(null);
+  const [futureBookings, setFutureBookings] = useState([]);
+  const [pastBookings, setPastBookings] = useState([]);
 
   useEffect(() => {
     async function fetchStats() {
@@ -17,8 +17,27 @@ export default function UserProfile({ user }) {
       setStats(data);
     }
 
+    async function fetchBookings() {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/${profileId}/bookings`
+      );
+      const data = await res.json();
+
+      const today = new Date();
+      const future = data.bookings.filter(
+        (b) => new Date(b.check_in_date) >= today
+      );
+      const past = data.bookings.filter(
+        (b) => new Date(b.check_in_date) < today
+      );
+
+      setFutureBookings(future);
+      setPastBookings(past);
+    }
+
     fetchStats();
-  }, []);
+    fetchBookings();
+  }, [profileId]);
 
   if (!stats) return <p>Loading...</p>;
 
@@ -37,6 +56,11 @@ export default function UserProfile({ user }) {
             <strong>{stats.reviews}</strong> Reviews
           </p>
         </div>
+      </div>
+
+      <div className="bookings-summary">
+        <h3>Future Bookings: {futureBookings.length}</h3>
+        <h3>Past Bookings: {pastBookings.length}</h3>
       </div>
     </div>
   );
