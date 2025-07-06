@@ -3,6 +3,7 @@ import "./UserBookings.css";
 import { da } from "date-fns/locale";
 import { format } from "date-fns";
 import BackButton from "./BackButton";
+import { Link } from "react-router-dom";
 
 export default function UserBookings({ bookings }) {
   const [propertyDetails, setpropertyDetails] = useState([]);
@@ -51,38 +52,43 @@ export default function UserBookings({ bookings }) {
   return (
     <div className="user-bookings-container">
       <BackButton />
-      <h1 className="bookings-header">Bookings!</h1>
+      <h1 className="bookings-header">My Bookings</h1>
 
       {bookings.map((booking) => (
-        <div key={booking.booking_id} className="booking-card">
-          <div className="booking-properties-info">
-            <h2 className="booking-property-title">
-              {propertyDetails[booking.property_id]?.name || "Loading..."}
-            </h2>
-            <p>
-              <strong>Check-in:</strong>
-              {format(new Date(booking.check_in_date), "PPP")}
-            </p>
+        <Link
+          to={`/property/${booking.property_id}`}
+          key={booking.booking_id}
+          className="booking-card-link"
+        >
+          <div className="booking-card">
+            <div className="booking-properties-info">
+              <h2 className="booking-property-title">
+                {propertyDetails[booking.property_id]?.name || "Loading..."}
+              </h2>
 
-            <p>
-              <strong>Check-out:</strong>
-              {format(new Date(booking.check_out_date), "PPP")}
-            </p>
+              <p>
+                <strong>Check-in:</strong>
+                {format(new Date(booking.check_in_date), "PPP")}
+              </p>
+              <p>
+                <strong>Check-out:</strong>
+                {format(new Date(booking.check_out_date), "PPP")}
+              </p>
+              <p>
+                <strong>BOOKED ON:</strong>
+                {format(new Date(booking.created_at), "PPP")}
+              </p>
+            </div>
 
-            <p>
-              <strong>BOOKED ON:</strong>{" "}
-              {format(new Date(booking.created_at), "PPP")}
-            </p>
+            <div className="booking-properties-image">
+              <img
+                src={propertyDetails[booking.property_id]?.image}
+                alt={propertyDetails[booking.property_id]?.name}
+                className="property-booking-image"
+              />
+            </div>
           </div>
-
-          <div className="booking-properties-image">
-            <img
-              src={propertyDetails[booking.property_id]?.image}
-              alt={propertyDetails[booking.property_id]?.name}
-              className="property-booking-image"
-            />
-          </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

@@ -8,7 +8,7 @@ export default function PropertyReviews({ setShowReviews }) {
   const [reviews, setReviews] = useState([]);
 
   const handleClose = () => {
-    setShowReviews(false); // ✅ correctly closes the section
+    setShowReviews(false);
   };
 
   useEffect(() => {

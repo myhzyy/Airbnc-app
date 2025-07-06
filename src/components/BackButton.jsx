@@ -8,7 +8,7 @@ export default function BackButton() {
 
   return (
     <button className="back-button" onClick={() => navigate(-1)}>
-      <FiArrowLeft size={20} />
+      <FiArrowLeft className="back-button-click" size={20} />
     </button>
   );
 }

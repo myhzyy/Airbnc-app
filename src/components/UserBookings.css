@@ -11,10 +11,15 @@
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.8rem;
   margin-bottom: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
+  /* border: 2px solid red; */
+}
+
+.booking-properties-info {
+  /* border: 2px solid red; */
 }
 
 .booking-card:hover {
@@ -55,4 +60,10 @@
 
 .booking-property-title {
   font-size: 1rem;
+}
+
+.booking-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
