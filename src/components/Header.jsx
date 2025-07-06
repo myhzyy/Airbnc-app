@@ -7,7 +7,7 @@ import filterImage from "../assets/filter.png";
 import FilterMenu from "./FilterMenu";
 import LoggedInUser from "./LoggedInUser";
 import menuBarIcon from "../assets/menuBar.png";
-import baseCampLogo from "../assets/menuBar2.png";
+import baseCampLogo from "../assets/menuBar2.png"; ✅ (expects `.png`)
 import loggedInUser from "../assets/loggedInUser.png";
 import MenuSideBar from "../components/MenuSideBar";
 
