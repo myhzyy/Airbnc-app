@@ -29,7 +29,7 @@ export default function Header({ filter, setFilter, user }) {
   };
 
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate("/profile");
   };
 
   const handleLogoClick = () => {

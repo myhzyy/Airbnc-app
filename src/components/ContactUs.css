@@ -1,0 +1,32 @@
+.contact-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f4f6f8;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.contact-container p {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.contact-email {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #0077ff;
+  text-decoration: none;
+  margin: 0.5rem 0;
+}
+
+.contact-email:hover {
+  text-decoration: underline;
+}

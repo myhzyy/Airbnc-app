@@ -22,7 +22,6 @@ export default function UserBookings({ bookings }) {
             const url = `${apiUrl}/api/properties/${id}`;
             const res = await fetch(url);
             const data = await res.json();
-            console.log(data);
 
             return {
               id,
@@ -48,8 +47,6 @@ export default function UserBookings({ bookings }) {
 
     if (bookings.length > 0) fetchData();
   }, [bookings]);
-
-  //   console.log(propertyDetails);
 
   return (
     <div className="user-bookings-container">

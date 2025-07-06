@@ -6,6 +6,9 @@ export default function IsLoggedInSideBar({ user }) {
 
   const navigate = useNavigate();
 
+  const handleContactUsClick = () => {
+    navigate("/contactUs");
+  };
   const handleMyBookingsClick = () => {
     navigate("/MyBookings");
   };
@@ -16,7 +19,7 @@ export default function IsLoggedInSideBar({ user }) {
       <ul className="sidebar-links">
         <li onClick={handleMyBookingsClick}>📅 My Bookings</li>
         <li>🏠 My Properties</li>
-        <li>📩 Contact Us</li>
+        <li onClick={handleContactUsClick}>📩 Contact Us</li>
       </ul>
     </div>
   );
