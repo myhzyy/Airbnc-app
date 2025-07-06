@@ -32,6 +32,10 @@ export default function Header({ filter, setFilter, user }) {
     navigate("/profile");
   };
 
+  const handleNotLogggedInClick = () => {
+    navigate("/login");
+  };
+
   const handleLogoClick = () => {
     navigate("/");
   };
@@ -78,7 +82,7 @@ export default function Header({ filter, setFilter, user }) {
               src={signInImage}
               alt="User"
               className="header-icon"
-              onClick={handleLoginClick}
+              onClick={handleNotLogggedInClick}
               style={{ cursor: "pointer" }}
             />
           )}
