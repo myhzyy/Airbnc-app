@@ -22,6 +22,8 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
 
   const navigate = useNavigate();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleConfirmBooking = async () => {
     const payload = {
       guest_id: user.auth_user_id,
@@ -31,7 +33,7 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
 
     try {
       const res = await fetch(
-        `https://airbnc-oxkw.onrender.com/api/properties/${propertyId}/bookings`,
+        `${apiUrl}/api/properties/${propertyId}/bookings`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -61,7 +63,7 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
     async function fetchBookings() {
       try {
         const res = await fetch(
-          `https://airbnc-oxkw.onrender.com/api/properties/${propertyId}/bookings`
+          `${apiUrl}/api/properties/${propertyId}/bookings`
         );
         const data = await res.json();
 

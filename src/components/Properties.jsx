@@ -6,9 +6,11 @@ import { useEffect } from "react";
 export default function Properties({ filter, setFilter }) {
   const [properties, setProperties] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchData() {
-      const baseUrl = "https://airbnc-oxkw.onrender.com/api/properties";
+      const baseUrl = `${apiUrl}/api/properties`;
 
       const url =
         filter === "low"

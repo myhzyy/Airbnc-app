@@ -13,11 +13,11 @@ export default function PropertyPage({ user }) {
   const [showReviews, setShowReviews] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchProperty() {
-      const response = await fetch(
-        `https://airbnc-oxkw.onrender.com/api/properties/${id}`
-      );
+      const response = await fetch(`${apiUrl}/api/properties/${id}`);
 
       const data = await response.json();
       setProperty(data.propertyId);

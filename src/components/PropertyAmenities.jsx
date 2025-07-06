@@ -6,6 +6,8 @@ export default function PropertyAmenities() {
   const { id } = useParams();
   const [amenities, setAmenities] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const iconMap = {
     WiFi: "📶",
     TV: "📺",
@@ -34,9 +36,7 @@ export default function PropertyAmenities() {
 
   useEffect(() => {
     async function fetchAmenities() {
-      const response = await fetch(
-        `https://airbnc-oxkw.onrender.com/api/properties/${id}/amenities`
-      );
+      const response = await fetch(`${apiUrl}/api/properties/${id}/amenities`);
 
       const data = await response.json();
       setAmenities(data.amenities);

@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 export default function UserBookings({ bookings }) {
   const [propertyDetails, setpropertyDetails] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchData() {
       const uniquePropertyIds = [
@@ -17,7 +19,7 @@ export default function UserBookings({ bookings }) {
       try {
         const fetchedData = await Promise.all(
           uniquePropertyIds.map(async (id) => {
-            const url = `https://airbnc-oxkw.onrender.com/api/properties/${id}`;
+            const url = `${apiUrl}/api/properties/${id}`;
             const res = await fetch(url);
             const data = await res.json();
             console.log(data);

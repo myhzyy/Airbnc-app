@@ -6,12 +6,14 @@ export default function MyBookings({ user }) {
 
   const signedInUser = user?.auth_user_id;
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (!signedInUser) return;
 
     async function fetchData() {
       try {
-        const url = `https://airbnc-oxkw.onrender.com/api/users/${signedInUser}/bookings`;
+        const url = `${apiUrl}/api/users/${signedInUser}/bookings`;
         const res = await fetch(url);
         const data = await res.json();
         setBookings(data.bookings);

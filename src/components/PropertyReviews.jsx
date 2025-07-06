@@ -7,15 +7,15 @@ export default function PropertyReviews({ setShowReviews }) {
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleClose = () => {
     setShowReviews(false);
   };
 
   useEffect(() => {
     async function fetchReviews() {
-      const res = await fetch(
-        `https://airbnc-oxkw.onrender.com/api/properties/${id}/reviews`
-      );
+      const res = await fetch(`${apiUrl}/api/properties/${id}/reviews`);
 
       const data = await res.json();
       setReviews(data.reviews);
