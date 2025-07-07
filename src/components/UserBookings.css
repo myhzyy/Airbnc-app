@@ -73,7 +73,9 @@
 }
 
 .pagination-button {
+  margin: 2px;
   border-radius: 15%;
+  font-size: 15px;
   padding: 4px 4px;
   border: none;
   background-color: #222;
@@ -99,4 +101,11 @@
 
 .pagination-button:hover {
   background-color: #444;
+}
+
+.pagination-page-number {
+  display: inline-block;
+  margin: 0 8px;
+  font-weight: bold;
+  font-size: 14px;
 }

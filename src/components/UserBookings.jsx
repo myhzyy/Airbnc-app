@@ -75,6 +75,9 @@ export default function UserBookings({ bookings }) {
     pastPage * bookingsPerPage
   );
 
+  const totalFuturePages = Math.ceil(futureBookings.length / bookingsPerPage);
+  const totalPastPages = Math.ceil(pastBookings.length / bookingsPerPage);
+
   const renderBookingCard = (booking) => (
     <Link
       to={`/property/${booking.property_id}`}
@@ -129,15 +132,20 @@ export default function UserBookings({ bookings }) {
             className="pagination-button"
             onClick={() => setFuturePage(futurePage - 1)}
           >
-            Previous
+            ←
           </button>
         )}
-        {futurePage * bookingsPerPage < futureBookings.length && (
+
+        <span className="pagination-page-number">
+          Page {futurePage} of {totalFuturePages}
+        </span>
+
+        {futurePage < totalFuturePages && (
           <button
             className="pagination-button"
             onClick={() => setFuturePage(futurePage + 1)}
           >
-            Next
+            →
           </button>
         )}
       </div>
