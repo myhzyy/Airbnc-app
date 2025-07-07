@@ -1,32 +1,47 @@
 import "./Properties.css";
 import PropertyCard from "./PropertyCard";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Properties({ filter, setFilter }) {
   const [properties, setProperties] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     async function fetchData() {
-      const baseUrl = `${apiUrl}/api/properties`;
+      setIsLoading(true);
 
-      const url =
-        filter === "low"
-          ? `${baseUrl}/sort/price-low-high`
-          : filter === "high"
-          ? `${baseUrl}/sort/price-high-low`
-          : baseUrl;
+      try {
+        const baseUrl = `${apiUrl}/api/properties`;
 
-      const urlResponse = await fetch(url);
-      const { properties } = await urlResponse.json();
+        const url =
+          filter === "low"
+            ? `${baseUrl}/sort/price-low-high`
+            : filter === "high"
+            ? `${baseUrl}/sort/price-high-low`
+            : baseUrl;
 
-      setProperties(properties);
+        const urlResponse = await fetch(url);
+        const { properties } = await urlResponse.json();
+
+        setProperties(properties);
+      } catch (err) {
+        console.error("Failed to fetch properties:", err);
+        setProperties([]);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchData();
   }, [filter]);
+
+  if (isLoading) {
+    return (
+      <p className="loading-message">Loading your dream stays — hang tight!</p>
+    );
+  }
 
   return (
     <div className="propertiesCard-container">

@@ -1,10 +1,5 @@
 .properties-container {
-  /* border: 2px solid red; */
   height: 100vh;
-}
-
-.propertiesCard-container {
-  /* border: 2px solid red; */
 }
 
 .propertiesCard-container {
@@ -12,11 +7,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 10px;
-  /* border: 2px solid blue; */
 }
 
 .image-box {
-  /* border: 2px solid red; */
 }
 
 .image-box-image {
@@ -35,4 +28,14 @@
   width: 23px;
   height: auto;
   display: block;
+}
+
+.loading-message {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin: 0;
 }

@@ -37,6 +37,8 @@ export default function UserProfile({ user }) {
     }
 
     fetchStats();
+    console.log("profileId:", profileId);
+
     fetchBookings();
   }, [profileId]);
 
