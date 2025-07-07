@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import "./AuthPage.css";
-import baseCampLogo from "../assets/baseCampLogo.png";
+import baseCampLogo from "../../assets/baseCampLogo.png";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 

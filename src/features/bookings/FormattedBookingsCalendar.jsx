@@ -4,7 +4,7 @@ import { addDays, eachDayOfInterval } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import "./FormattedBookingsCalendar.css";
-import CloseButton from "./CloseButton";
+import CloseButton from "../../components/CloseButton/CloseButton";
 import { useNavigate } from "react-router-dom";
 
 export default function BookingCalendar({ propertyId, setShowCalendar, user }) {

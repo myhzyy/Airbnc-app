@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./PropertyReviews.css";
-import CloseButton from "./CloseButton";
+import CloseButton from "./CloseButton/CloseButton";
 
 export default function PropertyReviews({ setShowReviews }) {
   const { id } = useParams();

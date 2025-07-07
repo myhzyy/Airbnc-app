@@ -1,5 +1,5 @@
-import Header from "./Header";
-import Properties from "./Properties";
+import Header from "../../components/Header";
+import Properties from "../properties/Properties";
 
 export default function Home({ filter, setFilter, user }) {
   return (

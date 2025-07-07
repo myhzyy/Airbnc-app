@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Properties from "./components/Properties";
-import Login from "./components/Login";
-import AuthPage from "./components/AuthPage";
-import Home from "./components/Home";
-import PropertyPage from "./components/PropertyPage";
-import MyBookings from "./components/MyBookings";
+import Properties from "./features/properties/Properties";
+import Login from "./features/auth/Login";
+import AuthPage from "./features/auth/AuthPage";
+import Home from "./features/home/Home";
+import PropertyPage from "./features/properties/PropertyPage";
+import MyBookings from "./features/bookings/MyBookings";
 import ContactUs from "./components/ContactUs";
-import MyProfile from "./components/MyProfile";
+import MyProfile from "./features/profile/MyProfile";
 
 function App() {
   const [filter, setFilter] = useState("");
@@ -26,7 +26,7 @@ function App() {
         <Route path="/property/:id" element={<PropertyPage user={user} />} />
         <Route path="/myBookings" element={<MyBookings user={user} />} />
         <Route path="/contactUs" element={<ContactUs />} />
-        <Route path="/profile" element={<MyProfile user={user} />} />
+        <Route path="/profile" element={<MyProfile user />} />
       </Routes>
     </>
   );

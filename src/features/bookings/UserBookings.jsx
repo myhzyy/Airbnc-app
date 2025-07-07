@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./UserBookings.css";
 import { format, isAfter } from "date-fns";
-import BackButton from "./BackButton";
+import BackButton from "../../components/BackButton/BackButton";
 import { Link } from "react-router-dom";
 
 export default function UserBookings({ bookings }) {

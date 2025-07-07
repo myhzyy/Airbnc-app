@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./PropertyPage.css";
-import Header from "./Header";
-import PropertyReviews from "./PropertyReviews";
-import ClickButton from "./ClickButton";
+import Header from "../../components/Header";
+import PropertyReviews from "../../components/PropertyReviews";
+import ClickButton from "../../components/ClickButton/ClickButton";
 import PropertyAmenities from "./PropertyAmenities";
-import BookingCalendar from "../components/FormattedBookingsCalendar";
+import BookingCalendar from "../bookings/FormattedBookingsCalendar";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
