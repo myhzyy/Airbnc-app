@@ -67,3 +67,36 @@
   color: inherit;
   display: block;
 }
+
+.pagination-controls {
+  /* border: 2px solid red; */
+}
+
+.pagination-button {
+  border-radius: 15%;
+  padding: 4px 4px;
+  border: none;
+  background-color: #222;
+  color: white;
+  cursor: pointer;
+}
+
+/* .pagination-button {
+  padding: 10px 14px;
+  border-radius: 50%;
+  border: none;
+  background-color: #222;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  transition: background-color 0.2s ease;
+} */
+
+.round-button:hover {
+  background-color: #444;
+}
+
+.pagination-button:hover {
+  background-color: #444;
+}
