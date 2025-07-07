@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import loggedInUser from "../assets/loggedInUser.png";
 import "./MyProfile.css";
+import BackButton from "./BackButton";
 
 export default function UserProfile({ user }) {
   const profileId = user.auth_user_id;
@@ -43,6 +44,7 @@ export default function UserProfile({ user }) {
 
   return (
     <div className="user-profile">
+      <BackButton />
       <h1>About Me</h1>
       <div className="profile-card">
         <img src={loggedInUser} alt="avatar" />
