@@ -12,9 +12,9 @@ export default function PropertyCard({ property }) {
     <div className="propertyCard-square" onClick={handlePropertyClick}>
       <div className="propertyCard-image-wrapper">
         <img className="propertyCard-image" src={property.image} alt="" />
-        <span className="property-info-likes">
+        {/* <span className="property-info-likes">
           ❤️{property.favourite_count}
-        </span>
+        </span> */}
       </div>
 
       <div className="propertyInfo">
