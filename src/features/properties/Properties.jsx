@@ -1,5 +1,6 @@
 import "./Properties.css";
 import PropertyCard from "./PropertyCard";
+import PropertySkeleton from "../../components/SkeletonLoader/SkeletonLoader"; // new skeleton loader
 import { useState, useEffect } from "react";
 
 export default function Properties({ filter, setFilter }) {
@@ -37,17 +38,13 @@ export default function Properties({ filter, setFilter }) {
     fetchData();
   }, [filter]);
 
-  if (isLoading) {
-    return (
-      <p className="loading-message">Loading your dream stays — hang tight!</p>
-    );
-  }
-
   return (
     <div className="propertiesCard-container">
-      {properties.map((property) => (
-        <PropertyCard key={property.property_id} property={property} />
-      ))}
+      {isLoading
+        ? [...Array(6)].map((_, index) => <PropertySkeleton key={index} />)
+        : properties.map((property) => (
+            <PropertyCard key={property.property_id} property={property} />
+          ))}
     </div>
   );
 }
