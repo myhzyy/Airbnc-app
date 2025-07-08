@@ -16,12 +16,13 @@ export default function Header({ filter, setFilter, user }) {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
-  const handleShowMenu = () => {
-    setShowMenu((prev) => !prev);
-  };
-
   const handleFilterClick = () => {
     setShowFilter((prev) => !prev);
+    onClose();
+  };
+
+  const handleShowMenu = () => {
+    setShowMenu((prev) => !prev);
   };
 
   const handleLoginClick = () => {
@@ -84,6 +85,10 @@ export default function Header({ filter, setFilter, user }) {
           )}
         </div>
       </div>
+
+      <li className="filter-button" onClick={handleFilterClick}>
+        Filter
+      </li>
 
       {showFilter && (
         <FilterMenu
