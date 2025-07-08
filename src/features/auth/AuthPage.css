@@ -79,3 +79,13 @@
 .test-label span {
   font-weight: 300;
 }
+
+.sign-up-link {
+  color: #0077cc;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sign-up-link:hover {
+  text-decoration: underline;
+}

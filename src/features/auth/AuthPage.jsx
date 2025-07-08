@@ -3,15 +3,14 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import "./AuthPage.css";
 import baseCampLogo from "../../assets/baseCampLogo.png";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function AuthPage({ setUser }) {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    setShowLogin(() => setShowLogin(true));
+  const handleToggleForm = () => {
+    setShowLogin((prev) => !prev);
   };
 
   const handleLogoClick = () => {
@@ -27,15 +26,35 @@ export default function AuthPage({ setUser }) {
           src={baseCampLogo}
           alt="BaseCamp Logo"
         />
-        <h1 className="basecamp-header-text">BASECAMP LOGIN</h1>
-        <p className="basecamp-signin-text">Sign up below!</p>
+        <p className="basecamp-signin-text">
+          {showLogin ? "Log in below!" : "Sign up below!"}
+        </p>
 
         {showLogin ? (
           <Login className="login-form" setUser={setUser} />
         ) : (
           <SignUp className="login-form" setShowLogin={setShowLogin} />
         )}
-        {!showLogin && <p onClick={handleLoginClick}>Log in</p>}
+
+        <div className="toggle-auth-link">
+          {showLogin ? (
+            <p>
+              Don't have an account?{" "}
+              <span
+                className="sign-up-link"
+                onClick={() => setShowLogin(false)}
+              >
+                Sign up
+              </span>
+            </p>
+          ) : (
+            <p onClick={() => setShowLogin(true)}>
+              Already have an account?{" "}
+              <span className="sign-up-link">Log in</span>
+            </p>
+          )}
+        </div>
+
         <div className="test-account-info">
           <p className="test-label">
             Test account: <span>(use this)</span>

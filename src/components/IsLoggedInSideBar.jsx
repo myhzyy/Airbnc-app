@@ -1,7 +1,7 @@
 import "./IsLoggedInSideBar.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
-export default function IsLoggedInSideBar({ user }) {
+export default function IsLoggedInSideBar({ user, onFilter }) {
   const welcomeUser = user.email;
 
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ export default function IsLoggedInSideBar({ user }) {
   return (
     <div className="loggedIn-sidebar">
       <h1 className="sidebar-welcome">Welcome back, {welcomeUser}!</h1>
+      {/* <li onClick={onFilter}>Filter</li> */}
       <ul className="sidebar-links">
         <li onClick={handleMyBookingsClick}>📅 My Bookings</li>
         <li>🏠 My Properties</li>
