@@ -91,4 +91,11 @@
   border-radius: 10%;
   font-size: 0.65rem;
   font-weight: 700;
+  cursor: pointer;
+}
+
+.login-reminder-button:hover {
+  background-color: #e03150;
+  color: white;
+  transform: translateY(-1px) scale(1.02);
 }

@@ -25,7 +25,7 @@ export default function MyBookings({ user }) {
     fetchData();
   }, [signedInUser]);
 
-  if (!signedInUser) return <p>Please log in to view your bookings.</p>;
+  if (!signedInUser) return <p>Please log in to view your bookings</p>;
 
   return (
     <div>

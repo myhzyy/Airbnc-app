@@ -6,6 +6,7 @@ import menuBarIcon from "../assets/menuBar.png";
 import baseCampLogo from "../assets/menubar2.png";
 import loggedInUser from "../assets/loggedInUser.png";
 import MenuSideBar from "../components/MenuSideBar";
+import Filter from "../assets/filter.png";
 
 import { useState } from "react";
 
@@ -59,13 +60,6 @@ export default function Header({ filter, setFilter, user }) {
         </div>
 
         <div className="header-right-side">
-          {/* <img
-            src={filterImage}
-            alt="Filter"
-            className="header-icon-filter"
-            onClick={handleFilterClick}
-            style={{ cursor: "pointer" }}
-          /> */}
           {loggedInEmail ? (
             <img
               src={loggedInUser}
@@ -85,10 +79,6 @@ export default function Header({ filter, setFilter, user }) {
           )}
         </div>
       </div>
-
-      <li className="filter-button" onClick={handleFilterClick}>
-        Filter
-      </li>
 
       {showFilter && (
         <FilterMenu
