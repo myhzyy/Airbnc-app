@@ -6,7 +6,6 @@ export default function LoggedInUser({ user }) {
 
   return (
     <div className="user-loggedIn-container">
-      {/* <p>{`Welcome back ${loggedInEmail}`}</p> */}
       <p>
         <span className="welcome-bold">Welcome back</span> {loggedInEmail}
       </p>

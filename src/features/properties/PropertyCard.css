@@ -1,5 +1,4 @@
 .propertyCard-square {
-  /* border: 2px solid red; */
   cursor: pointer;
   font-family: "Nunito", sans-serif;
   transition: box-shadow 0.3s ease, transform 0.2s ease;
@@ -12,8 +11,7 @@
 }
 
 .propertyInfo {
-  /* border: 2px solid red; */
-  margin: 2px 0; /* or even 0 if needed */
+  margin: 2px 0;
 }
 
 .propertyCard-image {
@@ -30,18 +28,9 @@
 .property-info {
   font-size: 0.8rem;
   line-height: 1;
-
-  /* border: 2px solid red; */
 }
 
-/* .property-info-likes {
-  border: 2px solid red;
-  font-size: 0.7rem;
-  cursor: pointer;
-} */
-
 .property-info-favourite-container {
-  /* border: 2px solid red; */
   display: flex;
   justify-content: space-between;
 }

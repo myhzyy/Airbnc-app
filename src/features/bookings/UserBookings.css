@@ -15,11 +15,6 @@
   margin-bottom: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
-  /* border: 2px solid red; */
-}
-
-.booking-properties-info {
-  /* border: 2px solid red; */
 }
 
 .booking-card:hover {
@@ -68,10 +63,6 @@
   display: block;
 }
 
-.pagination-controls {
-  /* border: 2px solid red; */
-}
-
 .pagination-button {
   margin: 2px;
   border-radius: 15%;
@@ -82,18 +73,6 @@
   color: white;
   cursor: pointer;
 }
-
-/* .pagination-button {
-  padding: 10px 14px;
-  border-radius: 50%;
-  border: none;
-  background-color: #222;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin: 5px;
-  transition: background-color 0.2s ease;
-} */
 
 .round-button:hover {
   background-color: #444;

@@ -45,8 +45,6 @@ export default function PropertyAmenities() {
     fetchAmenities();
   }, []);
 
-  //   console.log(amenities);
-
   return (
     <div className="amenities-container">
       <h3>Quick facts</h3>

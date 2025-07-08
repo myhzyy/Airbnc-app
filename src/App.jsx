@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Properties from "./features/properties/Properties";
-import Login from "./features/auth/Login";
 import AuthPage from "./features/auth/AuthPage";
 import Home from "./features/home/Home";
 import PropertyPage from "./features/properties/PropertyPage";

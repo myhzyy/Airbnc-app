@@ -1,11 +1,7 @@
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import headerLogo from "../assets/images.png";
 import signInImage from "../assets/defaultSignInImage.png";
-import cabinImage from "../assets/header-cabin-image.png";
-import filterImage from "../assets/filter.png";
 import FilterMenu from "./FilterMenu";
-import LoggedInUser from "./LoggedInUser";
 import menuBarIcon from "../assets/menuBar.png";
 import baseCampLogo from "../assets/menubar2.png";
 import loggedInUser from "../assets/loggedInUser.png";
