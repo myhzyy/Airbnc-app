@@ -5,6 +5,7 @@ export default function Login({ className, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -14,6 +15,7 @@ export default function Login({ className, setUser }) {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       const response = await fetch(`${apiUrl}/api/auth/login`, {
         method: "POST",
         headers: {
@@ -33,8 +35,19 @@ export default function Login({ className, setUser }) {
       }
     } catch (err) {
       setMessage("Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="login-loading">
+        <div className="spinner"></div>
+        <p>Signing you in...</p>
+      </div>
+    );
+  }
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
