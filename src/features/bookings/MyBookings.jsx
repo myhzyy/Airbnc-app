@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import UserBookings from "./UserBookings";
+import BookingSkeletonLoader from "../../components/SkeletonLoader/BookingsSkeletonLoader";
 
 export default function MyBookings({ user }) {
   const [bookings, setBookings] = useState([]);
@@ -30,7 +31,7 @@ export default function MyBookings({ user }) {
   return (
     <div>
       {bookings.length === 0 ? (
-        <p>No bookings found.</p>
+        <BookingSkeletonLoader />
       ) : (
         <UserBookings bookings={bookings} />
       )}

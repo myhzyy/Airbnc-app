@@ -1,6 +1,6 @@
 import "./Properties.css";
 import PropertyCard from "./PropertyCard";
-import PropertySkeleton from "../../components/SkeletonLoader/SkeletonLoader"; // new skeleton loader
+import PropertySkeleton from "../../components/SkeletonLoader/PropertiesSkeletonLoader";
 import { useState, useEffect } from "react";
 
 export default function Properties({ filter, setFilter }) {

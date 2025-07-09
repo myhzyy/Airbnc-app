@@ -1,0 +1,42 @@
+.booking-skeleton-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.skeleton {
+  background-color: #eee;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-line {
+  height: 12px;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.skeleton-line.short {
+  width: 60%;
+  height: 16px;
+}
+
+.skeleton-box {
+  width: 150px;
+  height: 120px;
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.95;
+  }
+}

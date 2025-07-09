@@ -49,6 +49,7 @@ export default function UserBookings({ bookings }) {
         setPropertyDetails(propertyMap);
       } catch (err) {
         console.error("Error fetching property details", err);
+      } finally {
       }
     }
 

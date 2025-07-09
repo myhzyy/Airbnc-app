@@ -1,4 +1,4 @@
-import "../SkeletonLoader/SkeletonLoader.css";
+import "../SkeletonLoader/PropertiesSkeletonLoader.css";
 
 export default function PropertySkeleton() {
   return (
