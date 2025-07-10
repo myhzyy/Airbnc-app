@@ -9,10 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
   const [bookedDates, setBookedDates] = useState([]);
-
-  const handleLoginHereButton = () => {
-    navigate("/login");
-  };
+  const navigate = useNavigate();
 
   const [selection, setSelection] = useState({
     startDate: new Date(),
@@ -20,11 +17,14 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
     key: "selection",
   });
 
-  const navigate = useNavigate();
-
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleConfirmBooking = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
     const payload = {
       guest_id: user.auth_user_id,
       check_in_date: selection.startDate.toISOString().split("T")[0],
@@ -55,10 +55,6 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
     }
   };
 
-  const handleNotLoggedInCalendarClick = async () => {
-    navigate("/login");
-  };
-
   useEffect(() => {
     async function fetchBookings() {
       try {
@@ -70,10 +66,7 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
         const disabledDates = data.bookings.rows.flatMap((booking) => {
           const start = new Date(booking.check_in_date);
           const end = new Date(booking.check_out_date);
-
-          const days = eachDayOfInterval({ start, end });
-
-          return days.map((date) => {
+          return eachDayOfInterval({ start, end }).map((date) => {
             return new Date(
               date.getFullYear(),
               date.getMonth(),
@@ -94,6 +87,7 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
   return (
     <div className="booking-calendar">
       <h2>Check Availability</h2>
+
       <DateRange
         months={1}
         direction="vertical"
@@ -104,27 +98,9 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
         onChange={(ranges) => setSelection(ranges.selection)}
       />
 
-      <button
-        className="confirm-booking-button"
-        onClick={handleConfirmBooking}
-        disabled={!user}
-      >
+      <button className="confirm-booking-button" onClick={handleConfirmBooking}>
         Confirm Booking
       </button>
-
-      {!user && (
-        <>
-          <div className="login-reminder">
-            <p>Please log in to book this property.</p>
-            <button
-              onClick={handleLoginHereButton}
-              className="login-reminder-button"
-            >
-              Log in here!
-            </button>
-          </div>
-        </>
-      )}
 
       <CloseButton onClick={() => setShowCalendar(false)} label="Close" />
     </div>
