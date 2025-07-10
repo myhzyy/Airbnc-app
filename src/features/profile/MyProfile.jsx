@@ -2,14 +2,19 @@ import { useEffect, useState } from "react";
 import loggedInUser from "../../assets/loggedInUser.png";
 import "./MyProfile.css";
 import BackButton from "../../components/BackButton/BackButton";
+import SignOut from "../../components/SignOut";
 
-export default function UserProfile({ user }) {
+export default function UserProfile({ user, setUser }) {
+  if (!user) return;
+
   const profileId = user.auth_user_id;
   const [stats, setStats] = useState(null);
   const [futureBookings, setFutureBookings] = useState([]);
   const [pastBookings, setPastBookings] = useState([]);
 
   useEffect(() => {
+    if (!user) return;
+
     async function fetchStats() {
       const res = await fetch(
         `${import.meta.env.VITE_API_URL}/api/users/${profileId}/stats`
@@ -37,11 +42,13 @@ export default function UserProfile({ user }) {
     }
 
     fetchStats();
-    console.log("profileId:", profileId);
 
     fetchBookings();
   }, [profileId]);
 
+  if (!user) {
+    return <p>Please log in to view your profile.</p>;
+  }
   if (!stats) return <p>Loading...</p>;
 
   return (
@@ -66,6 +73,8 @@ export default function UserProfile({ user }) {
         <h3>Future Bookings: {futureBookings.length}</h3>
         <h3>Past Bookings: {pastBookings.length}</h3>
       </div>
+
+      <SignOut setUser={setUser} />
     </div>
   );
 }

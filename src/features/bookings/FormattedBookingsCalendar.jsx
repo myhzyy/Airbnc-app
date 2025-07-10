@@ -82,7 +82,6 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
           });
         });
 
-        // console.log(disabledDates);
         setBookedDates(disabledDates);
       } catch (err) {
         console.error("Failed to fetch bookings", err);

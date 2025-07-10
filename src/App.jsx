@@ -23,7 +23,10 @@ function App() {
         <Route path="/property/:id" element={<PropertyPage user={user} />} />
         <Route path="/myBookings" element={<MyBookings user={user} />} />
         <Route path="/contactUs" element={<ContactUs />} />
-        <Route path="/profile" element={<MyProfile user={user} />} />
+        <Route
+          path="/profile"
+          element={<MyProfile user={user} setUser={setUser} />}
+        />
       </Routes>
     </>
   );
