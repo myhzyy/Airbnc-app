@@ -33,7 +33,7 @@ export default function MyBookings({ user }) {
       {bookings.length === 0 ? (
         <BookingSkeletonLoader />
       ) : (
-        <UserBookings bookings={bookings} />
+        <UserBookings bookings={bookings} setBookings={setBookings} />
       )}
     </div>
   );

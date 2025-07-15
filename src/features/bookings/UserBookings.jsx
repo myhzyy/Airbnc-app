@@ -4,10 +4,37 @@ import { format, isAfter } from "date-fns";
 import BackButton from "../../components/BackButton/BackButton";
 import { Link } from "react-router-dom";
 
-export default function UserBookings({ bookings }) {
+export default function UserBookings({ bookings, setBookings }) {
   const [futurePage, setFuturePage] = useState(1);
   const [pastPage, setPastPage] = useState(1);
   const bookingsPerPage = 5;
+
+  const handleRemoveBookingClick = async (e, bookingId) => {
+    e.preventDefault();
+
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this booking?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const res = await fetch(`${apiUrl}/api/bookings/${bookingId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to delete booking");
+      }
+
+      setBookings((prev) =>
+        prev.filter((booking) => booking.booking_id !== bookingId)
+      );
+    } catch (err) {
+      console.error("Error deleting booking", err);
+      alert("Failed to delete booking. please try again.");
+    }
+  };
 
   const [propertyDetails, setPropertyDetails] = useState({});
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -102,6 +129,12 @@ export default function UserBookings({ bookings }) {
             <strong>BOOKED ON:</strong>{" "}
             {format(new Date(booking.created_at), "PPP")}
           </p>
+          <button
+            onClick={(e) => handleRemoveBookingClick(e, booking.booking_id)}
+            className="remove-booking"
+          >
+            Remove Booking
+          </button>
         </div>
 
         <div className="booking-properties-image">
