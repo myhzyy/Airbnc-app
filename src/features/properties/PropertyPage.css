@@ -62,14 +62,28 @@
   transition: background-color 0.2s ease;
 }
 .reviews-and-calendar {
-  display: in;
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  margin-top: 20px;
+  margin: 40px auto;
   padding: 0 20px;
-  /* border: 2px solid red; */
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .reviews-and-calendar > * {
   flex: 0 0 50%;
+}
+
+@media (min-width: 1024px) {
+  .reviews-and-calendar {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .reviews-and-calendar > * {
+      flex: 1;
+      max-width: 50%;
+    }
+  }
 }
