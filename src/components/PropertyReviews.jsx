@@ -7,6 +7,11 @@ export default function PropertyReviews({ setShowReviews }) {
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
 
+  const propertyReviewRatings = reviews.map((property) => property.rating);
+  const averagePropertyReviewRating =
+    reviews.reduce((sum, property) => sum + property.rating, 0) /
+    reviews.length;
+
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleClose = () => {
@@ -24,8 +29,38 @@ export default function PropertyReviews({ setShowReviews }) {
     fetchReviews();
   }, [id]);
 
+  let ratingMessage;
+  switch (Math.round(averagePropertyReviewRating)) {
+    case 5:
+      ratingMessage = "Great stay!";
+      break;
+    case 4:
+      ratingMessage = "Good stay!";
+      break;
+    case 3:
+      ratingMessage = "Decent stay.";
+      break;
+    case 2:
+      ratingMessage = "Could be better.";
+      break;
+    case 1:
+      ratingMessage = "Poor stay.";
+      break;
+    default:
+      ratingMessage = "No reviews yet.";
+  }
+
   return (
     <div className="review-section">
+      <h1 className="user-reviews">Reviews about this property</h1>
+      <h2 className="user-reviews-overall">
+        {reviews.length
+          ? `${averagePropertyReviewRating}/5 ⭐ ${ratingMessage} • ${
+              reviews.length
+            } Review${reviews.length > 1 ? "s" : ""}`
+          : "No reviews yet"}
+      </h2>
+
       {reviews.map((review) => (
         <div className="review-card" key={review.review_id}>
           <img src={review.guest_avatar} alt="review guest" />
@@ -46,8 +81,6 @@ export default function PropertyReviews({ setShowReviews }) {
           </div>
         </div>
       ))}
-
-      <CloseButton onClick={handleClose} label="Close Reviews" />
     </div>
   );
 }

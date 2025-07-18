@@ -1,7 +1,9 @@
 .review-card {
   padding: 5px;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   font-size: 0.5rem;
+  box-sizing: border-box;
 }
 
 .review-stars {
@@ -22,4 +24,24 @@
   object-fit: cover;
   border-radius: 70%;
   border: 2px solid #ddd;
+}
+
+.user-reviews {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.user-reviews-overall {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .reviews-and-calendar {
+    flex-direction: column;
+  }
+
+  .reviews-and-calendar > * {
+    flex: 1 1 100%;
+  }
 }

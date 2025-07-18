@@ -61,3 +61,15 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
+.reviews-and-calendar {
+  display: in;
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  padding: 0 20px;
+  /* border: 2px solid red; */
+}
+
+.reviews-and-calendar > * {
+  flex: 0 0 50%;
+}

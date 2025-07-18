@@ -7,7 +7,12 @@ import "./FormattedBookingsCalendar.css";
 import CloseButton from "../../components/CloseButton/CloseButton";
 import { useNavigate } from "react-router-dom";
 
-export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
+export default function BookingCalendar({
+  propertyId,
+  setShowCalendar,
+  user,
+  setIsLoggedIn,
+}) {
   const [bookedDates, setBookedDates] = useState([]);
   const navigate = useNavigate();
 
@@ -21,7 +26,8 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
 
   const handleConfirmBooking = async () => {
     if (!user) {
-      navigate("/login");
+      setIsLoggedIn(true);
+      // navigate("/login");
       return;
     }
 
@@ -101,8 +107,6 @@ export default function BookingCalendar({ propertyId, setShowCalendar, user }) {
       <button className="confirm-booking-button" onClick={handleConfirmBooking}>
         Confirm Booking
       </button>
-
-      <CloseButton onClick={() => setShowCalendar(false)} label="Close" />
     </div>
   );
 }

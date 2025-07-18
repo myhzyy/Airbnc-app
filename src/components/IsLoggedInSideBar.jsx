@@ -16,10 +16,9 @@ export default function IsLoggedInSideBar({ user, onFilter }) {
   return (
     <div className="loggedIn-sidebar">
       <h1 className="sidebar-welcome">Welcome back, {welcomeUser}!</h1>
-      {/* <li onClick={onFilter}>Filter</li> */}
       <ul className="sidebar-links">
         <li onClick={handleMyBookingsClick}>📅 My Bookings</li>
-        {/* <li>🏠 My Properties</li> */}
+        <li onClick={onFilter}>⚙️ Filter</li>
         <li onClick={handleContactUsClick}>📩 Contact Us</li>
       </ul>
     </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import "./AuthPage.css";
-import baseCampLogo from "../../assets/baseCampLogo.png";
+import baseCampLogo from "../../assets/baseCampLogo1.png";
 import { useNavigate } from "react-router-dom";
 
 export default function AuthPage({ setUser }) {
