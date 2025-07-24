@@ -30,6 +30,10 @@
   line-height: 1;
 }
 
+.host {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
 .property-info-favourite-container {
   display: flex;
   justify-content: space-between;

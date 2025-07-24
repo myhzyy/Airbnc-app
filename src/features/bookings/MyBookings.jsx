@@ -4,6 +4,15 @@ import BookingSkeletonLoader from "../../components/SkeletonLoader/BookingsSkele
 
 export default function MyBookings({ user }) {
   const [bookings, setBookings] = useState([]);
+  const [filterBy, setFilterBy] = useState("check_in");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const filteredBookings = [...bookings].sort((a, b) => {
+    const dateA = new Date(a[filterBy]);
+    const dateB = new Date(b[filterBy]);
+
+    return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+  });
 
   const signedInUser = user?.auth_user_id;
 
@@ -33,7 +42,14 @@ export default function MyBookings({ user }) {
       {bookings.length === 0 ? (
         <BookingSkeletonLoader />
       ) : (
-        <UserBookings bookings={bookings} setBookings={setBookings} />
+        <UserBookings
+          bookings={filteredBookings}
+          setBookings={setBookings}
+          filterBy={filterBy}
+          setFilterBy={setFilterBy}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+        />
       )}
     </div>
   );

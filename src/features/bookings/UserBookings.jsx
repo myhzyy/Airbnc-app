@@ -4,7 +4,14 @@ import { format, isAfter } from "date-fns";
 import BackButton from "../../components/BackButton/BackButton";
 import { Link } from "react-router-dom";
 
-export default function UserBookings({ bookings, setBookings }) {
+export default function UserBookings({
+  bookings,
+  setBookings,
+  filterBy,
+  sortOrder,
+  setSortOrder,
+  setFilterBy,
+}) {
   const [futurePage, setFuturePage] = useState(1);
   const [pastPage, setPastPage] = useState(1);
   const bookingsPerPage = 5;
@@ -85,13 +92,30 @@ export default function UserBookings({ bookings, setBookings }) {
 
   const now = new Date();
 
-  const futureBookings = bookings
-    .filter((booking) => isAfter(new Date(booking.check_in_date), now))
-    .sort((a, b) => new Date(a.check_in_date) - new Date(b.check_in_date));
+  const sortBookings = (data, direction) => {
+    return [...data].sort((a, b) => {
+      const dateA = new Date(
+        a[filterBy === "booked_on" ? "created_at" : "check_in_date"]
+      );
+      const dateB = new Date(
+        b[filterBy === "booked_on" ? "created_at" : "check_in_date"]
+      );
 
-  const pastBookings = bookings
-    .filter((booking) => !isAfter(new Date(booking.check_in_date), now))
-    .sort((a, b) => new Date(b.check_in_date) - new Date(a.check_in_date));
+      return direction === "asc" ? dateA - dateB : dateB - dateA;
+    });
+  };
+
+  const futureBookings = sortBookings(
+    bookings.filter((booking) => isAfter(new Date(booking.check_in_date), now)),
+    sortOrder
+  );
+
+  const pastBookings = sortBookings(
+    bookings.filter(
+      (booking) => !isAfter(new Date(booking.check_in_date), now)
+    ),
+    sortOrder
+  );
 
   const paginatedFuture = futureBookings.slice(
     (futurePage - 1) * bookingsPerPage,
@@ -154,6 +178,33 @@ export default function UserBookings({ bookings, setBookings }) {
       <h1 className="bookings-header">My Bookings</h1>
 
       <h2 className="bookings-subheading">Upcoming Bookings</h2>
+      <div className="booking-filter">
+        <label>
+          Filter by:
+          <select
+            className="booking-filter-button"
+            onChange={(e) => setFilterBy(e.target.value)}
+            value={filterBy}
+          >
+            <option className="" value="check_in">
+              Check-in date
+            </option>
+            <option value="booked_on">Booked on date</option>
+          </select>
+        </label>
+
+        <label>
+          Order:
+          <select
+            className="booking-filter-button"
+            onChange={(e) => setSortOrder(e.target.value)}
+            value={sortOrder}
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </label>
+      </div>
       {paginatedFuture.length > 0 ? (
         paginatedFuture.map(renderBookingCard)
       ) : (

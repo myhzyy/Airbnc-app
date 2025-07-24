@@ -98,3 +98,17 @@
   font-weight: bold;
   font-size: 14px;
 }
+
+.booking-filter {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+}
+
+.booking-filter-button {
+  border-radius: 12px;
+  font-size: 0.6rem;
+  margin-left: 3px;
+  background-color: #ff385c;
+  color: white;
+}
