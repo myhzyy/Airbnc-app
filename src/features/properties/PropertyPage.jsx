@@ -6,6 +6,7 @@ import PropertyReviews from "../../components/PropertyReviews";
 import PropertyAmenities from "./PropertyAmenities";
 import BookingCalendar from "../bookings/FormattedBookingsCalendar";
 import ToastLogIn from "../../components/ToastLogIn";
+import PropertyMap from "../../components/PropertyMap";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
@@ -54,6 +55,11 @@ export default function PropertyPage({ user }) {
           propertyId={property.property_id}
         />
       </div>
+
+      <PropertyMap
+        latitude={property.latitude}
+        longitude={property.longitude}
+      />
     </>
   );
 }
