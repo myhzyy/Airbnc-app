@@ -56,10 +56,12 @@ export default function PropertyPage({ user }) {
         />
       </div>
 
-      <PropertyMap
-        latitude={property.latitude}
-        longitude={property.longitude}
-      />
+      {/* <div className="map-container-wrapper">
+        <PropertyMap
+          latitude={property.latitude}
+          longitude={property.longitude}
+        />
+      </div> */}
     </>
   );
 }

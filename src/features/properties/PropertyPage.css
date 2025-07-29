@@ -76,6 +76,20 @@
   flex: 0 0 50%;
 }
 
+.map-container-wrapper {
+  margin: 20px auto;
+  padding: 0 20px;
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 300px;
+}
+
 @media (min-width: 1024px) {
   .reviews-and-calendar {
     flex-direction: row;
