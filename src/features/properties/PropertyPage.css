@@ -19,6 +19,12 @@
   font-weight: 600;
 }
 
+.section-location {
+  font-weight: 400;
+  font-size: 1rem;
+  font-style: italic;
+}
+
 .property-page-container img {
   width: 100%;
   height: 400px;

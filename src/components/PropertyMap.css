@@ -5,3 +5,13 @@
   z-index: 0;
   contain: layout;
 }
+
+.leaflet-map-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none;
+  margin: 0 auto;
+  background: white;
+}

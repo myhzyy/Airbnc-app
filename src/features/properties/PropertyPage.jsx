@@ -63,6 +63,7 @@ export default function PropertyPage({ user }) {
 
       <div className="section-heading">
         <p>Where you'll stay!</p>
+        <p className="section-location">{property.location}</p>
       </div>
       <div className="map-container-wrapper">
         <div className="map-container">
