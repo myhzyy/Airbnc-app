@@ -1,53 +1,36 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
+import "./PropertyMap.css";
 
-// 👇 Fix for default marker icons not showing in production (Netlify, Render etc.)
-import markerIcon2x from "/leaflet/marker-icon-2x.png";
-import markerIcon from "/leaflet/marker-icon.png";
-import markerShadow from "/leaflet/marker-shadow.png";
-
+// Fix Leaflet icon issue
 delete L.Icon.Default.prototype._getIconUrl;
-
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
-
-// 👇 Helper component to fix map sizing bug on small screens
-function ForceMapResize() {
-  const map = useMap();
-  useEffect(() => {
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 300);
-  }, [map]);
-  return null;
-}
 
 export default function PropertyMap({
   latitude = 53.4808,
   longitude = -2.2426,
 }) {
-  const position = [latitude, longitude];
-
   return (
-    <div style={{ height: "400px", width: "100%", marginTop: "20px" }}>
+    <div className="leaflet-map-wrapper">
       <MapContainer
-        center={position}
+        center={[latitude, longitude]}
         zoom={13}
         scrollWheelZoom={false}
         style={{ height: "100%", width: "100%" }}
       >
-        <ForceMapResize />
-
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position}>
+        <Marker position={[latitude, longitude]}>
           <Popup>Property Location</Popup>
         </Marker>
       </MapContainer>

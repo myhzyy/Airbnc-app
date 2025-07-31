@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./PropertyPage.css";
+
 import Header from "../../components/Header";
 import PropertyReviews from "../../components/PropertyReviews";
 import PropertyAmenities from "./PropertyAmenities";
@@ -17,9 +18,13 @@ export default function PropertyPage({ user }) {
 
   useEffect(() => {
     async function fetchProperty() {
-      const response = await fetch(`${apiUrl}/api/properties/${id}`);
-      const data = await response.json();
-      setProperty(data.propertyId);
+      try {
+        const response = await fetch(`${apiUrl}/api/properties/${id}`);
+        const data = await response.json();
+        setProperty(data.propertyId);
+      } catch (error) {
+        console.error("Failed to fetch property:", error);
+      }
     }
 
     fetchProperty();
@@ -32,10 +37,10 @@ export default function PropertyPage({ user }) {
       <Header user={user} />
       <div className="property-page-container">
         {isLoggedIn && (
-          <ToastLogIn message={"Oops!... looks like you're not logged in"} />
+          <ToastLogIn message="Oops!... looks like you're not logged in" />
         )}
 
-        <img src={property.images} alt="" />
+        <img src={property.images} alt={property.property_name} />
         <div className="property-info-section">
           <h1 className="property-info-header">{property.property_name}</h1>
           <h2>{property.description}</h2>
@@ -56,12 +61,20 @@ export default function PropertyPage({ user }) {
         />
       </div>
 
-      {/* <div className="map-container-wrapper">
-        <PropertyMap
-          latitude={property.latitude}
-          longitude={property.longitude}
-        />
-      </div> */}
+      {/* Map only visible on larger screens */}
+      <div className="map-container-wrapper">
+        <div className="map-container">
+          <PropertyMap
+            latitude={property.latitude}
+            longitude={property.longitude}
+          />
+        </div>
+      </div>
+
+      {/* Fallback message for mobile */}
+      <div className="map-fallback-message">
+        Map available on larger devices!
+      </div>
     </>
   );
 }
