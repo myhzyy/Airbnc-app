@@ -61,7 +61,9 @@ export default function PropertyPage({ user }) {
         />
       </div>
 
-      {/* Map only visible on larger screens */}
+      <div className="section-heading">
+        <p>Where you'll stay!</p>
+      </div>
       <div className="map-container-wrapper">
         <div className="map-container">
           <PropertyMap
@@ -71,7 +73,6 @@ export default function PropertyPage({ user }) {
         </div>
       </div>
 
-      {/* Fallback message for mobile */}
       <div className="map-fallback-message">
         Map available on larger devices!
       </div>
