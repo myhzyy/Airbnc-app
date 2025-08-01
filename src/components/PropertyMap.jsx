@@ -3,7 +3,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./PropertyMap.css";
 
-// Fix for missing marker icons in Vite/Webpack environments
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -27,7 +26,7 @@ export default function PropertyMap({
         style={{
           height: "100%",
           width: "100%",
-          borderRadius: "12px", // Optional: add rounded corners
+          borderRadius: "12px",
         }}
       >
         <TileLayer

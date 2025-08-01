@@ -1,6 +1,33 @@
 .amenities-container {
-  padding: 20px;
-  background-color: white;
+  padding: 0 20px;
+  max-width: 1150px;
+  margin: 40px auto;
+  /* background-color: white; */
+  /* border: 1px solid red; */
+}
+
+.amenities-container h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.amenity-icon {
+  font-size: 1.2rem;
 }
 
 .amenities-container h3 {

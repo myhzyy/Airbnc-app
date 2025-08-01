@@ -17,6 +17,7 @@
   box-sizing: border-box;
   font-size: 1.2rem;
   font-weight: 600;
+  /* border: 2px solid red; */
 }
 
 .section-location {
@@ -137,6 +138,12 @@
   position: relative;
   overflow: hidden;
   z-index: 0;
+}
+
+.small-screen-map {
+  display: block;
+  width: 98%;
+  margin: 0 auto;
 }
 
 .leaflet-container,

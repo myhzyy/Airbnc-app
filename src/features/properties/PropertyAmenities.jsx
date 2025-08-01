@@ -46,19 +46,21 @@ export default function PropertyAmenities() {
   }, []);
 
   return (
-    <div className="amenities-container">
-      <h3>Quick facts</h3>
-      <div className="amenities-grid">
-        {amenities.map((item, i) => {
-          const icon = iconMap[item.amenity] || iconMap.default;
-          return (
-            <div className="amenity-item" key={i}>
-              <span className="amenity-icon">{icon}</span>
-              <span className="amenity-label">{item.amenity}</span>
-            </div>
-          );
-        })}
+    <>
+      <div className="amenities-container">
+        <h3>Quick facts</h3>
+        <div className="amenities-grid">
+          {amenities.map((item, i) => {
+            const icon = iconMap[item.amenity] || iconMap.default;
+            return (
+              <div className="amenity-item" key={i}>
+                <span className="amenity-icon">{icon}</span>
+                <span className="amenity-label">{item.amenity}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
