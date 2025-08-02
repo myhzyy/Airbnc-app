@@ -56,12 +56,15 @@ export default function PropertyPage({ user }) {
 
       <div className="reviews-and-calendar">
         <PropertyReviews />
-        <BookingCalendar
-          setIsLoggedIn={setIsLoggedIn}
-          user={user}
-          setShowCalendar={() => {}}
-          propertyId={property.property_id}
-        />
+
+        <div className="calendar-center-wrapper">
+          <BookingCalendar
+            setIsLoggedIn={setIsLoggedIn}
+            user={user}
+            setShowCalendar={() => {}}
+            propertyId={property.property_id}
+          />
+        </div>
       </div>
 
       <div className="section-heading">

@@ -48,7 +48,7 @@ export default function PropertyAmenities() {
   return (
     <>
       <div className="amenities-container">
-        <h3>Quick facts</h3>
+        <h3>This property has:</h3>
         <div className="amenities-grid">
           {amenities.map((item, i) => {
             const icon = iconMap[item.amenity] || iconMap.default;

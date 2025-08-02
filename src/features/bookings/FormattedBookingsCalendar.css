@@ -99,3 +99,18 @@
   color: white;
   transform: translateY(-1px) scale(1.02);
 }
+
+@media (max-width: 430px) {
+  .booking-calendar {
+    max-width: 95vw;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 500px;
+  }
+  .confirm-booking-button {
+    align-self: flex-start; /* pushes it to the left inside centered parent */
+  }
+}

@@ -1,11 +1,12 @@
 .hostedBy-container {
   display: flex;
   align-items: center;
-  max-width: 1200px;
-  margin: 40px auto;
+  max-width: 1150px;
+  margin: 0 auto 10px auto;
   padding: 0 20px;
   box-sizing: border-box;
-  gap: 12px; /* adds space between image and text */
+  gap: 12px;
+  margin-left: -8px;
 }
 
 .hostedBy-container img {
@@ -13,10 +14,10 @@
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
-  margin-left: 0; /* makes sure it's aligned left */
+  margin-left: 0;
 }
 
 .hostedBy-container h4 {
   font-weight: 400;
-  margin: 0; /* removes default margin */
+  margin: 0;
 }

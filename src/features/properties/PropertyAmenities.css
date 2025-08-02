@@ -1,14 +1,12 @@
 .amenities-container {
   padding: 0 20px;
   max-width: 1150px;
-  margin: 40px auto;
-  /* background-color: white; */
-  /* border: 1px solid red; */
+  margin: 20px auto;
 }
 
 .amenities-container h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 650;
   margin-bottom: 16px;
 }
 
@@ -28,12 +26,6 @@
 
 .amenity-icon {
   font-size: 1.2rem;
-}
-
-.amenities-container h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 16px;
 }
 
 .amenities-grid {

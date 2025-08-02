@@ -170,3 +170,11 @@
   margin-top: 20px;
   color: #555;
 }
+
+@media (max-width: 430px) {
+  .calendar-center-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
