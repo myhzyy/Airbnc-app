@@ -39,12 +39,30 @@ export default function Properties({ filter, setFilter }) {
   }, [filter]);
 
   return (
-    <div className="propertiesCard-container">
-      {isLoading
-        ? [...Array(6)].map((_, index) => <PropertySkeleton key={index} />)
-        : properties.map((property) => (
-            <PropertyCard key={property.property_id} property={property} />
-          ))}
-    </div>
+    <>
+      {isLoading && (
+        <div className="loading-overlay">
+          <div className="loading-content">
+            <div className="tetrominos">
+              <div className="tetromino box1"></div>
+              <div className="tetromino box2"></div>
+              <div className="tetromino box3"></div>
+              <div className="tetromino box4"></div>
+            </div>
+            <p className="loading-text">
+              This could take a second... Please wait
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="propertiesCard-container">
+        {isLoading
+          ? [...Array(6)].map((_, index) => <PropertySkeleton key={index} />)
+          : properties.map((property) => (
+              <PropertyCard key={property.property_id} property={property} />
+            ))}
+      </div>
+    </>
   );
 }
