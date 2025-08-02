@@ -72,8 +72,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  /* background: rgba(255, 255, 255, 0.85); */
-  background-color: white;
+  background: rgba(255, 255, 255, 1);
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -81,6 +80,8 @@
 }
 
 .loading-content {
+  /* border: 1px solid red; */
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
   background-color: white;
   flex-direction: column;
@@ -89,27 +90,32 @@
 }
 
 .loading-text {
-  margin-top: 20px;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 200;
   color: #333;
   font-weight: 500;
   text-align: center;
+  background-color: white;
 }
 
 /* Tetromino animation */
+
 .tetrominos {
+  margin-left: 70px;
   position: relative;
   width: 200px;
-  height: 140px;
+  height: 80px;
+  background-color: white;
 }
 
 .tetromino {
-  width: 96px;
-  height: 112px;
+  width: 35px;
+  height: 50px;
   position: absolute;
   transition: all ease 0.3s;
   background: url('data:image/svg+xml;utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 684"%3E%3Cpath fill="%23010101" d="M305.7 0L0 170.9v342.3L305.7 684 612 513.2V170.9L305.7 0z"/%3E%3Cpath fill="%23fff" d="M305.7 80.1l-233.6 131 233.6 131 234.2-131-234.2-131"/%3E%3C/svg%3E')
     no-repeat top center;
+  background-size: contain;
 }
 
 .box1 {
@@ -132,43 +138,43 @@
     transform: translate(0, 0);
   }
   50% {
-    transform: translate(48px, -27px);
+    transform: translate(24px, -14px); /* reduced */
   }
   60%,
   100% {
-    transform: translate(96px, 0);
+    transform: translate(48px, 0);
   }
 }
 
 @keyframes tetromino2 {
   0%,
   20% {
-    transform: translate(96px, 0);
+    transform: translate(48px, 0);
   }
   40%,
   100% {
-    transform: translate(144px, 28px);
+    transform: translate(72px, 14px);
   }
 }
 
 @keyframes tetromino3 {
   0% {
-    transform: translate(144px, 28px);
+    transform: translate(72px, 14px);
   }
   20%,
   60% {
-    transform: translate(96px, 56px);
+    transform: translate(48px, 28px);
   }
   90%,
   100% {
-    transform: translate(48px, 28px);
+    transform: translate(24px, 14px);
   }
 }
 
 @keyframes tetromino4 {
   0%,
   60% {
-    transform: translate(48px, 28px);
+    transform: translate(24px, 14px);
   }
   90%,
   100% {

@@ -50,7 +50,8 @@ export default function Properties({ filter, setFilter }) {
               <div className="tetromino box4"></div>
             </div>
             <p className="loading-text">
-              This could take a second... Please wait
+              Loading everything for you... <br />
+              Enjoy this animation for a second.
             </p>
           </div>
         </div>
