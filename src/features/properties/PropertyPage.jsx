@@ -51,11 +51,17 @@ export default function PropertyPage({ user }) {
         </div>
       </div>
 
-      <HostedBy />
-      <PropertyAmenities />
+      <hr className="section-divider" />
+
+      <div className="host-and-amenities">
+        <HostedBy />
+        <PropertyAmenities />
+      </div>
 
       <div className="reviews-and-calendar">
         <PropertyReviews />
+
+        <hr className="section-divider" />
 
         <div className="calendar-center-wrapper">
           <BookingCalendar
@@ -71,6 +77,7 @@ export default function PropertyPage({ user }) {
         <p>Where you'll stay!</p>
         <p className="section-location">{property.location}</p>
       </div>
+
       <div className="map-container-wrapper">
         <div className="map-container">
           <PropertyMap
