@@ -2,6 +2,7 @@ import "./Properties.css";
 import PropertyCard from "./PropertyCard";
 import PropertySkeleton from "../../components/SkeletonLoader/PropertiesSkeletonLoader";
 import { useState, useEffect } from "react";
+import TerrominosLoader from "../../components/tetrominosLoader";
 
 export default function Properties({ filter, setFilter }) {
   const [properties, setProperties] = useState([]);
@@ -40,22 +41,7 @@ export default function Properties({ filter, setFilter }) {
 
   return (
     <>
-      {isLoading && (
-        <div className="loading-overlay">
-          <div className="loading-content">
-            <div className="tetrominos">
-              <div className="tetromino box1"></div>
-              <div className="tetromino box2"></div>
-              <div className="tetromino box3"></div>
-              <div className="tetromino box4"></div>
-            </div>
-            <p className="loading-text">
-              Loading everything for you... <br />
-              Enjoy this animation for a second.
-            </p>
-          </div>
-        </div>
-      )}
+      {isLoading && <TerrominosLoader />}
 
       <div className="propertiesCard-container">
         {isLoading
