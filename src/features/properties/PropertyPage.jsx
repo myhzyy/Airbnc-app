@@ -54,7 +54,7 @@ export default function PropertyPage({ user }) {
       <hr className="section-divider" />
 
       <div className="host-and-amenities">
-        <HostedBy />
+        {/* <HostedBy /> */}
         <PropertyAmenities />
       </div>
 
