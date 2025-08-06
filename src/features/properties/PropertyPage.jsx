@@ -15,21 +15,42 @@ export default function PropertyPage({ user }) {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [images, setImages] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   useEffect(() => {
-    async function fetchProperty() {
+    async function fetchPropertyAndImages() {
       try {
-        const response = await fetch(`${apiUrl}/api/properties/${id}`);
-        const data = await response.json();
-        setProperty(data.propertyId);
+        const [propertyRes, imagesRes] = await Promise.all([
+          fetch(`${apiUrl}/api/properties/${id}`),
+          fetch(`${apiUrl}/api/properties/${id}/images`),
+        ]);
+
+        const propertyData = await propertyRes.json();
+        const imagesData = await imagesRes.json();
+
+        setProperty(propertyData.propertyId);
+        setImages(imagesData.images);
       } catch (error) {
-        console.error("Failed to fetch property:", error);
+        console.error("Failed to fetch property or images:", error);
       }
     }
 
-    fetchProperty();
+    fetchPropertyAndImages();
   }, [id]);
 
   if (!property) return <p>Loading...</p>;
@@ -41,8 +62,25 @@ export default function PropertyPage({ user }) {
         {isLoggedIn && (
           <ToastLogIn message="Oops!... looks like you're not logged in" />
         )}
+        <div className="slider-container">
+          {images.length > 0 && (
+            <>
+              <button className="slider-button left" onClick={goToPrev}>
+                ‹
+              </button>
 
-        <img src={property.images} alt={property.property_name} />
+              <img
+                src={images[currentIndex].image_url}
+                alt={images[currentIndex].alt_tag || property.property_name}
+                className="slider-image"
+              />
+
+              <button className="slider-button right" onClick={goToNext}>
+                ›
+              </button>
+            </>
+          )}
+        </div>{" "}
         <div className="property-info-section">
           <h1 className="property-info-header">{property.property_name}</h1>
           <h2>{property.description}</h2>
