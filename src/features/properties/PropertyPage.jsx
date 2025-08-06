@@ -69,11 +69,13 @@ export default function PropertyPage({ user }) {
                 ‹
               </button>
 
-              <img
-                src={images[currentIndex].image_url}
-                alt={images[currentIndex].alt_tag || property.property_name}
-                className="slider-image"
-              />
+              <div className="image-wrapper">
+                <img
+                  src={images[currentIndex].image_url}
+                  alt={images[currentIndex].alt_tag || property.property_name}
+                  className="slider-image"
+                />
+              </div>
 
               <button className="slider-button right" onClick={goToNext}>
                 ›
