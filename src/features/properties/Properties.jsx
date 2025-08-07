@@ -2,7 +2,7 @@ import "./Properties.css";
 import PropertyCard from "./PropertyCard";
 import PropertySkeleton from "../../components/SkeletonLoader/PropertiesSkeletonLoader";
 import { useState, useEffect } from "react";
-import TerrominosLoader from "../../components/tetrominosLoader";
+import TerrominosLoader from "../../components/TetrominosLoader";
 
 export default function Properties({ filter, setFilter }) {
   const [properties, setProperties] = useState([]);

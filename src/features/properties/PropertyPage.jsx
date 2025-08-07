@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./PropertyPage.css";
-import smallerMap from "../../assets/smallerMap.png";
 
 import Header from "../../components/Header";
 import PropertyReviews from "../../components/PropertyReviews";
@@ -9,8 +8,8 @@ import PropertyAmenities from "./PropertyAmenities";
 import BookingCalendar from "../bookings/FormattedBookingsCalendar";
 import ToastLogIn from "../../components/ToastLogIn";
 import PropertyMap from "../../components/PropertyMap";
-import HostedBy from "../../components/HostedBy";
 import ImageSlider from "../../components/ImageSlider";
+import TetrominosLoade from "../../components/TetrominosLoader";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
@@ -41,7 +40,7 @@ export default function PropertyPage({ user }) {
     fetchPropertyAndImages();
   }, [id]);
 
-  if (!property) return <p>Loading...</p>;
+  if (!property) return <TetrominosLoade />;
 
   return (
     <>
