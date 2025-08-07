@@ -5,6 +5,7 @@
 
 @media (min-width: 823px) {
   .host-and-amenities {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
@@ -45,6 +46,7 @@
   margin: 2px auto;
   width: 60%;
 }
+
 .property-page-container img {
   width: 100%;
   height: 400px;
@@ -120,15 +122,26 @@
 
 @media (min-width: 823px) {
   .reviews-and-calendar {
+    /* border: 2px solid red; */
+    max-width: 1200px;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 0;
   }
 
   .reviews-and-calendar > * {
-    flex: 1;
-    max-width: 50%;
+    width: 50%;
+    flex: 0 0 50%;
+    box-sizing: border-box;
+  }
+  .calendar-center-wrapper {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
   }
 }
+
 /* === Slider === */
 
 .slider-container {
@@ -136,6 +149,12 @@
   width: 100%;
   margin: 0 auto;
   overflow: hidden;
+}
+
+@media (min-width: 1100px) {
+  .slider-container {
+    max-width: 75%;
+  }
 }
 
 .slider-image {
@@ -148,13 +167,29 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.7);
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 4px 12px;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.slider-button.left {
+  left: 10px;
+}
+
+.slider-button.right {
+  right: 10px;
 }
 
 .image-wrapper {
@@ -170,19 +205,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 20px;
-}
-
-.slider-button:hover {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.slider-button.left {
-  left: 10px;
-}
-
-.slider-button.right {
-  right: 10px;
+  border-radius: 12px;
 }
 
 /* === Map Visibility and Layout === */
@@ -245,13 +268,7 @@
   color: #555;
 }
 
-@media (max-width: 430px) {
-  .calendar-center-wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-}
+/* === Responsive Section Divider === */
 
 @media (min-width: 823px) {
   .section-divider {
@@ -269,8 +286,12 @@
   }
 }
 
-@media (min-width: 1100px) {
-  .slider-container {
-    max-width: 75%;
+/* === Calendar Responsive Fix === */
+
+@media (max-width: 430px) {
+  .calendar-center-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }

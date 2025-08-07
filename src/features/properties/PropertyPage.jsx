@@ -10,27 +10,15 @@ import BookingCalendar from "../bookings/FormattedBookingsCalendar";
 import ToastLogIn from "../../components/ToastLogIn";
 import PropertyMap from "../../components/PropertyMap";
 import HostedBy from "../../components/HostedBy";
+import ImageSlider from "../../components/ImageSlider";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [images, setImages] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   const apiUrl = import.meta.env.VITE_API_URL;
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const goToPrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
 
   useEffect(() => {
     async function fetchPropertyAndImages() {
@@ -62,27 +50,9 @@ export default function PropertyPage({ user }) {
         {isLoggedIn && (
           <ToastLogIn message="Oops!... looks like you're not logged in" />
         )}
-        <div className="slider-container">
-          {images.length > 0 && (
-            <>
-              <button className="slider-button left" onClick={goToPrev}>
-                ‹
-              </button>
 
-              <div className="image-wrapper">
-                <img
-                  src={images[currentIndex].image_url}
-                  alt={images[currentIndex].alt_tag || property.property_name}
-                  className="slider-image"
-                />
-              </div>
+        {images.length > 0 && <ImageSlider images={images} />}
 
-              <button className="slider-button right" onClick={goToNext}>
-                ›
-              </button>
-            </>
-          )}
-        </div>{" "}
         <div className="property-info-section">
           <h1 className="property-info-header">{property.property_name}</h1>
           <h2>{property.description}</h2>
