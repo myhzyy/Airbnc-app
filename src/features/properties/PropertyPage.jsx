@@ -10,6 +10,7 @@ import ToastLogIn from "../../components/ToastLogIn";
 import PropertyMap from "../../components/PropertyMap";
 import ImageSlider from "../../components/ImageSlider";
 import TetrominosLoade from "../../components/TetrominosLoader";
+import HostedBy from "../../components/HostedBy";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
@@ -63,7 +64,6 @@ export default function PropertyPage({ user }) {
       <hr className="section-divider" />
 
       <div className="host-and-amenities">
-        {/* <HostedBy /> */}
         <PropertyAmenities />
       </div>
 
@@ -80,6 +80,10 @@ export default function PropertyPage({ user }) {
             propertyId={property.property_id}
           />
         </div>
+      </div>
+
+      <div className="hostedBy-wrapper">
+        <HostedBy id={id} />
       </div>
 
       <div className="section-heading">
