@@ -9,14 +9,17 @@ import BookingCalendar from "../bookings/FormattedBookingsCalendar";
 import ToastLogIn from "../../components/ToastLogIn";
 import PropertyMap from "../../components/PropertyMap";
 import ImageSlider from "../../components/ImageSlider";
-import TetrominosLoade from "../../components/TetrominosLoader";
+import TetrominosLoader from "../../components/TetrominosLoader";
 import HostedBy from "../../components/HostedBy";
+import PropertyDescription from "../../components/PropertyDescription";
+import AboutThisSpace from "../../components/AboutThisSpace";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [images, setImages] = useState([]);
+  const [showAboutThisSpace, setShowAboutThisSpace] = useState(true);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -41,7 +44,7 @@ export default function PropertyPage({ user }) {
     fetchPropertyAndImages();
   }, [id]);
 
-  if (!property) return <TetrominosLoade />;
+  if (!property) return <TetrominosLoader />;
 
   return (
     <>
@@ -59,6 +62,10 @@ export default function PropertyPage({ user }) {
           <h3>{property.location}</h3>
           <p>£{property.price_per_night}</p>
         </div>
+      </div>
+
+      <div className="about-this-space">
+        {showAboutThisSpace && <AboutThisSpace />}
       </div>
 
       <hr className="section-divider" />

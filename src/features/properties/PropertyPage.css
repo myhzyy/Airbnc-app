@@ -103,6 +103,14 @@
   background-color: #e03150;
 }
 
+.about-this-space {
+  /* border: 2px solid red; */
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
 /* === Reviews and Calendar Layout === */
 
 .reviews-and-calendar {
