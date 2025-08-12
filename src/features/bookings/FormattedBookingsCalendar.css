@@ -1,117 +1,155 @@
 /* Container */
 .booking-calendar {
-  max-width: 320px;
+  max-width: 280px;
   width: 100%;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
-/* Tighten DayPicker default spacing a bit */
-.bp-calendar .rdp {
-  --rdp-accent-color: #111;
-  --rdp-outline: 0;
-  --rdp-cell-size: 42px;
-  --rdp-months-gap: 8px;
+/* react-day-picker sizing + subtle font */
+.booking-calendar .bp-calendar {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* Remove default blue selection styles */
-.bp-calendar .rdp-day_selected,
-.bp-calendar .rdp-day_selected:hover,
-.bp-calendar .rdp-day_range_start,
-.bp-calendar .rdp-day_range_end,
-.bp-calendar .rdp-day_range_middle {
-  background: transparent;
-  color: inherit;
-  box-shadow: none;
+.booking-calendar .rdp {
+  --rdp-accent-color: #ff385c;
+  --rdp-accent-background: #ffe7ed;
+  --rdp-outline: 2px solid #ff385c;
+  --rdp-cell-size: 40px;
+  --rdp-background-color: transparent;
+  margin: 0;
 }
 
-/* START & END circles (Airbnb-like dark solid circle) */
-.bp-calendar .rdp-day_range_start .rdp-day_button,
-.bp-calendar .rdp-day_range_end .rdp-day_button {
+/* Day cell and typography tweaks */
+.booking-calendar .rdp-caption_label {
+  font-weight: 700;
+}
+.booking-calendar .rdp-head_cell {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* Selected range look */
+.booking-calendar .rdp-day.rdp-day_selected:not(.rdp-day_outside) {
+  background: #111; /* solid dark dot (like Airbnb) */
+  color: #fff;
+}
+.booking-calendar .rdp-day_range_middle:not(.rdp-day_outside) {
+  background: rgba(255, 56, 92, 0.12); /* soft pink band between ends */
+}
+.booking-calendar .rdp-day_range_start:not(.rdp-day_outside),
+.booking-calendar .rdp-day_range_end:not(.rdp-day_outside) {
   background: #111;
   color: #fff;
-  border-radius: 999px;
 }
 
-/* Middle-of-range: subtle underline only (no row fill) */
-.bp-calendar .rdp-day_range_middle .rdp-day_button {
-  position: relative;
-}
-.bp-calendar .rdp-day_range_middle .rdp-day_button::after {
-  content: "";
-  position: absolute;
-  left: 20%;
-  right: 20%;
-  bottom: 6px;
-  height: 3px;
-  background: rgba(17, 17, 17, 0.18);
-  border-radius: 2px;
-}
-
-/* Today: tiny grey underline when not selected */
-.bp-calendar .rdp-day_today .rdp-day_button {
-  position: relative;
-}
-.bp-calendar .rdp-day_today .rdp-day_button::after {
-  content: "";
-  position: absolute;
-  left: 30%;
-  right: 30%;
-  bottom: 5px;
-  height: 2px;
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: 2px;
-}
-
-/* Disabled (booked) days */
-.bp-calendar .rdp-day_disabled .rdp-day_button {
-  color: #cfcfcf;
-  cursor: not-allowed;
-}
-
-/* Hover effect for normal days */
-.bp-calendar .rdp-day:not(.rdp-day_disabled) .rdp-day_button:hover {
-  background: rgba(17, 17, 17, 0.06);
-  border-radius: 999px;
-}
-
-/* Month & nav tweaks */
-.bp-calendar .rdp-caption_label {
-  font-weight: 700;
-  font-size: 18px;
-}
-.bp-calendar .rdp-nav_button {
-  color: #2b2bb2;
+/* Disabled days */
+.booking-calendar .rdp-day_disabled {
+  opacity: 0.35;
 }
 
 /* Confirm button */
 .confirm-booking-button {
   border: none;
   width: 100%;
-  max-width: 360px;
-  margin-top: 14px;
+  margin: 14px 0 10px;
   padding: 14px 18px;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   background-color: #ff385c;
-  color: white;
+  color: #fff;
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(255, 56, 92, 0.25);
-  transition: transform 120ms ease, background-color 120ms ease,
-    box-shadow 120ms ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 .confirm-booking-button:hover {
   background-color: #e03150;
   transform: translateY(-1px);
 }
 
-/* Mobile width */
+/* Mobile layout */
 @media (max-width: 430px) {
   .booking-calendar {
     max-width: 95vw;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
   }
+  .confirm-booking-button {
+    width: 92%;
+  }
+}
+
+/* -------- Success modal -------- */
+.bc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 16px;
+}
+
+.bc-modal {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  padding: 20px 18px;
+}
+
+.bc-modal-title {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.bc-modal-text {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.bc-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.bc-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.bc-btn-primary {
+  background: #ff385c;
+  color: #fff;
+  transition: transform 0.1s ease, background 0.2s ease;
+}
+.bc-btn-primary:hover {
+  background: #e03150;
+  transform: translateY(-1px);
+}
+
+.bc-btn-ghost {
+  background: transparent;
+  color: #111;
+}
+.bc-btn-ghost:hover {
+  background: #f2f2f2;
 }

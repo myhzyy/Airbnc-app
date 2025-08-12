@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { eachDayOfInterval } from "date-fns";
 import { DayPicker } from "react-day-picker";
+import { useNavigate } from "react-router-dom";
 import "react-day-picker/style.css";
 import "./FormattedBookingsCalendar.css";
 
@@ -11,8 +12,22 @@ export default function BookingCalendar({
   setIsLoggedIn,
 }) {
   const [bookedDates, setBookedDates] = useState([]);
-  const [range, setRange] = useState({ from: undefined, to: undefined }); // ⬅️ no default selection
+  const [range, setRange] = useState({ from: undefined, to: undefined });
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [successDates, setSuccessDates] = useState({ from: "", to: "" });
+
   const apiUrl = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
+
+  // Lock body scroll when success modal is open
+  useEffect(() => {
+    if (!showSuccess) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [showSuccess]);
 
   const handleConfirmBooking = async () => {
     if (!user) {
@@ -24,10 +39,13 @@ export default function BookingCalendar({
       return;
     }
 
+    const checkIn = range.from.toISOString().split("T")[0];
+    const checkOut = range.to.toISOString().split("T")[0];
+
     const payload = {
       guest_id: user.auth_user_id,
-      check_in_date: range.from.toISOString().split("T")[0],
-      check_out_date: range.to.toISOString().split("T")[0],
+      check_in_date: checkIn,
+      check_out_date: checkOut,
     };
 
     try {
@@ -39,11 +57,14 @@ export default function BookingCalendar({
           body: JSON.stringify(payload),
         }
       );
+
       const data = await res.json();
 
       if (res.ok) {
-        alert("Booking successful!");
-        setShowCalendar(false);
+        setSuccessDates({ from: checkIn, to: checkOut });
+        setShowSuccess(true);
+        // Optionally clear selection after success:
+        // setRange({ from: undefined, to: undefined });
       } else {
         alert(`Booking failed: ${data.msg || "Unknown error"}`);
       }
@@ -81,20 +102,57 @@ export default function BookingCalendar({
       <h2>Check Availability</h2>
 
       <DayPicker
+        className="bp-calendar"
         mode="range"
         selected={range}
         onSelect={setRange}
-        defaultMonth={new Date()}
-        disabled={bookedDates}
-        weekStartsOn={1}
         numberOfMonths={1}
+        weekStartsOn={1}
         showOutsideDays
-        className="bp-calendar"
+        disabled={bookedDates}
+        defaultMonth={new Date()}
       />
 
       <button className="confirm-booking-button" onClick={handleConfirmBooking}>
         Confirm Booking
       </button>
+
+      {showSuccess && (
+        <div className="bc-modal-overlay" onClick={() => setShowSuccess(false)}>
+          <div
+            className="bc-modal"
+            role="dialog"
+            aria-modal="true"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="bc-modal-title">Thanks for your booking! 🎉</h3>
+            <p className="bc-modal-text">
+              We’ve reserved your stay from <strong>{successDates.from}</strong>{" "}
+              to <strong>{successDates.to}</strong>.
+            </p>
+
+            <div className="bc-modal-actions">
+              <button
+                className="bc-btn bc-btn-primary"
+                onClick={() => {
+                  setShowSuccess(false);
+                  setShowCalendar?.(false);
+                  // Change to your “My bookings” route if different
+                  navigate("/myBookings");
+                }}
+              >
+                View My Bookings
+              </button>
+              <button
+                className="bc-btn bc-btn-ghost"
+                onClick={() => setShowSuccess(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
