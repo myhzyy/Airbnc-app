@@ -1,4 +1,4 @@
-import "./tetrominosLoader.css";
+import "./TetrominosLoader.css";
 
 export default function terrominosLoader() {
   return (
