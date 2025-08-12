@@ -64,9 +64,9 @@ export default function PropertyPage({ user }) {
         </div>
       </div>
 
-      <div className="about-this-space">
+      {/* <div className="about-this-space">
         {showAboutThisSpace && <AboutThisSpace />}
-      </div>
+      </div> */}
 
       <hr className="section-divider" />
 
