@@ -58,7 +58,7 @@ export default function PropertyPage({ user }) {
 
         <div className="property-info-section">
           <h1 className="property-info-header">{property.property_name}</h1>
-          <h2>{property.description}</h2>
+          {/* <h2>{property.description}</h2> */}
           <h3>{property.location}</h3>
           <p>£{property.price_per_night}</p>
         </div>
