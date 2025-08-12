@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./PropertyPage.css";
-import smallerMap from "../../assets/smallerMap.png";
 
 import Header from "../../components/Header";
 import PropertyReviews from "../../components/PropertyReviews";
@@ -9,30 +8,43 @@ import PropertyAmenities from "./PropertyAmenities";
 import BookingCalendar from "../bookings/FormattedBookingsCalendar";
 import ToastLogIn from "../../components/ToastLogIn";
 import PropertyMap from "../../components/PropertyMap";
+import ImageSlider from "../../components/ImageSlider";
+import TetrominosLoader from "../../components/TetrominosLoader";
 import HostedBy from "../../components/HostedBy";
+import PropertyDescription from "../../components/PropertyDescription";
+import AboutThisSpace from "../../components/AboutThisSpace";
 
 export default function PropertyPage({ user }) {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [images, setImages] = useState([]);
+  const [showAboutThisSpace, setShowAboutThisSpace] = useState(true);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    async function fetchProperty() {
+    async function fetchPropertyAndImages() {
       try {
-        const response = await fetch(`${apiUrl}/api/properties/${id}`);
-        const data = await response.json();
-        setProperty(data.propertyId);
+        const [propertyRes, imagesRes] = await Promise.all([
+          fetch(`${apiUrl}/api/properties/${id}`),
+          fetch(`${apiUrl}/api/properties/${id}/images`),
+        ]);
+
+        const propertyData = await propertyRes.json();
+        const imagesData = await imagesRes.json();
+
+        setProperty(propertyData.propertyId);
+        setImages(imagesData.images);
       } catch (error) {
-        console.error("Failed to fetch property:", error);
+        console.error("Failed to fetch property or images:", error);
       }
     }
 
-    fetchProperty();
+    fetchPropertyAndImages();
   }, [id]);
 
-  if (!property) return <p>Loading...</p>;
+  if (!property) return <TetrominosLoader />;
 
   return (
     <>
@@ -42,7 +54,8 @@ export default function PropertyPage({ user }) {
           <ToastLogIn message="Oops!... looks like you're not logged in" />
         )}
 
-        <img src={property.images} alt={property.property_name} />
+        {images.length > 0 && <ImageSlider images={images} />}
+
         <div className="property-info-section">
           <h1 className="property-info-header">{property.property_name}</h1>
           <h2>{property.description}</h2>
@@ -51,10 +64,13 @@ export default function PropertyPage({ user }) {
         </div>
       </div>
 
+      {/* <div className="about-this-space">
+        {showAboutThisSpace && <AboutThisSpace />}
+      </div> */}
+
       <hr className="section-divider" />
 
       <div className="host-and-amenities">
-        {/* <HostedBy /> */}
         <PropertyAmenities />
       </div>
 
@@ -71,6 +87,10 @@ export default function PropertyPage({ user }) {
             propertyId={property.property_id}
           />
         </div>
+      </div>
+
+      <div className="hostedBy-wrapper">
+        <HostedBy id={id} />
       </div>
 
       <div className="section-heading">

@@ -1,0 +1,37 @@
+/* Modal panel */
+.modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  border: 2px solid black;
+  background: #fff;
+  z-index: 9999;
+  text-align: left;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.modal-card,
+.modal-card * {
+  background-color: #fff;
+}
+
+.modal-section {
+  margin: 18px 0;
+  padding: 2px;
+}
+
+.modal-section ul {
+  margin-bottom: 5px;
+}
+
+.modal-button {
+  font-size: 20px;
+  margin-bottom: 5px;
+  border: none;
+}

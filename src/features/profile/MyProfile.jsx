@@ -3,6 +3,7 @@ import loggedInUser from "../../assets/loggedInUser.png";
 import "./MyProfile.css";
 import BackButton from "../../components/BackButton/BackButton";
 import SignOut from "../../components/SignOut";
+import TerrominosLoader from "../../components/TetrominosLoader";
 
 export default function UserProfile({ user, setUser }) {
   if (!user) return;
@@ -49,7 +50,7 @@ export default function UserProfile({ user, setUser }) {
   if (!user) {
     return <p>Please log in to view your profile.</p>;
   }
-  if (!stats) return <p>Loading...</p>;
+  if (!stats) return <TerrominosLoader />;
 
   return (
     <div className="user-profile">

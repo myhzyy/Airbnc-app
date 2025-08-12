@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { DateRange } from "react-date-range";
-import { addDays, eachDayOfInterval } from "date-fns";
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
+import { eachDayOfInterval } from "date-fns";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/style.css";
 import "./FormattedBookingsCalendar.css";
-import CloseButton from "../../components/CloseButton/CloseButton";
-import { useNavigate } from "react-router-dom";
 
 export default function BookingCalendar({
   propertyId,
@@ -14,27 +11,23 @@ export default function BookingCalendar({
   setIsLoggedIn,
 }) {
   const [bookedDates, setBookedDates] = useState([]);
-  const navigate = useNavigate();
-
-  const [selection, setSelection] = useState({
-    startDate: new Date(),
-    endDate: addDays(new Date(), 1),
-    key: "selection",
-  });
-
+  const [range, setRange] = useState({ from: undefined, to: undefined }); // ⬅️ no default selection
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleConfirmBooking = async () => {
     if (!user) {
       setIsLoggedIn(true);
-      // navigate("/login");
+      return;
+    }
+    if (!range?.from || !range?.to) {
+      alert("Please pick your check‑in and check‑out dates.");
       return;
     }
 
     const payload = {
       guest_id: user.auth_user_id,
-      check_in_date: selection.startDate.toISOString().split("T")[0],
-      check_out_date: selection.endDate.toISOString().split("T")[0],
+      check_in_date: range.from.toISOString().split("T")[0],
+      check_out_date: range.to.toISOString().split("T")[0],
     };
 
     try {
@@ -46,7 +39,6 @@ export default function BookingCalendar({
           body: JSON.stringify(payload),
         }
       );
-
       const data = await res.json();
 
       if (res.ok) {
@@ -69,39 +61,35 @@ export default function BookingCalendar({
         );
         const data = await res.json();
 
-        const disabledDates = data.bookings.rows.flatMap((booking) => {
-          const start = new Date(booking.check_in_date);
-          const end = new Date(booking.check_out_date);
-          return eachDayOfInterval({ start, end }).map((date) => {
-            return new Date(
-              date.getFullYear(),
-              date.getMonth(),
-              date.getDate()
-            );
-          });
-        });
+        const disabledDates = data.bookings.rows.flatMap((b) =>
+          eachDayOfInterval({
+            start: new Date(b.check_in_date),
+            end: new Date(b.check_out_date),
+          }).map((d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()))
+        );
 
         setBookedDates(disabledDates);
       } catch (err) {
         console.error("Failed to fetch bookings", err);
       }
     }
-
     fetchBookings();
-  }, [propertyId]);
+  }, [propertyId, apiUrl]);
 
   return (
     <div className="booking-calendar">
       <h2>Check Availability</h2>
 
-      <DateRange
-        months={1}
-        direction="vertical"
-        showDateDisplay={false}
-        ranges={[selection]}
-        minDate={new Date()}
-        disabledDates={bookedDates}
-        onChange={(ranges) => setSelection(ranges.selection)}
+      <DayPicker
+        mode="range"
+        selected={range}
+        onSelect={setRange}
+        defaultMonth={new Date()}
+        disabled={bookedDates}
+        weekStartsOn={1}
+        numberOfMonths={1}
+        showOutsideDays
+        className="bp-calendar"
       />
 
       <button className="confirm-booking-button" onClick={handleConfirmBooking}>
