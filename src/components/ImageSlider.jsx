@@ -2,67 +2,78 @@ import { useRef, useState, useEffect } from "react";
 import "./ImageSlider.css";
 
 export default function ImageSlider({ images = [] }) {
-  const [idx, setIdx] = useState(0);
-  const [drag, setDrag] = useState({ active: false, startX: 0, deltaX: 0 });
-  const frameRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [swipeState, setSwipeState] = useState({
+    isSwiping: false,
+    startX: 0,
+    movedX: 0,
+  });
+  const sliderFrameRef = useRef(null);
 
   if (!images.length) return null;
 
-  const next = () => setIdx((i) => (i + 1) % images.length);
-  const prev = () => setIdx((i) => (i - 1 + images.length) % images.length);
+  const goToNext = () => setCurrentIndex((i) => (i + 1) % images.length);
+  const goToPrev = () =>
+    setCurrentIndex((i) => (i - 1 + images.length) % images.length);
 
-  const getWidth = () => frameRef.current?.offsetWidth || 1;
-  const pctOffset = (drag.deltaX / getWidth()) * 100;
+  const getSliderWidth = () => sliderFrameRef.current?.offsetWidth || 1;
+  const swipeOffsetPercent = (swipeState.movedX / getSliderWidth()) * 100;
 
-  const onPressStart = (x) => setDrag({ active: true, startX: x, deltaX: 0 });
+  const startSwipe = (x) =>
+    setSwipeState({ isSwiping: true, startX: x, movedX: 0 });
 
-  const onPressMove = (x) => {
-    if (!drag.active) return;
-    let dx = x - drag.startX;
+  const moveSwipe = (x) => {
+    if (!swipeState.isSwiping) return;
+    let delta = x - swipeState.startX;
 
-    if ((idx === 0 && dx > 0) || (idx === images.length - 1 && dx < 0)) {
-      dx = dx / 3;
+    if (
+      (currentIndex === 0 && delta > 0) ||
+      (currentIndex === images.length - 1 && delta < 0)
+    ) {
+      delta = delta / 3;
     }
-    setDrag((d) => ({ ...d, deltaX: dx }));
+    setSwipeState((prev) => ({ ...prev, movedX: delta }));
   };
 
-  const onPressEnd = () => {
-    if (!drag.active) return;
-    const width = getWidth();
-    const threshold = width * 0.2;
+  const endSwipe = () => {
+    if (!swipeState.isSwiping) return;
 
-    if (drag.deltaX <= -threshold && idx < images.length - 1) {
-      setIdx((i) => i + 1);
-    } else if (drag.deltaX >= threshold && idx > 0) {
-      setIdx((i) => i - 1);
+    const swipeThreshold = getSliderWidth() * 0.2;
+    if (
+      swipeState.movedX <= -swipeThreshold &&
+      currentIndex < images.length - 1
+    ) {
+      setCurrentIndex((i) => i + 1);
+    } else if (swipeState.movedX >= swipeThreshold && currentIndex > 0) {
+      setCurrentIndex((i) => i - 1);
     }
 
-    setDrag({ active: false, startX: 0, deltaX: 0 });
+    setSwipeState({ isSwiping: false, startX: 0, movedX: 0 });
   };
 
-  const handleMouseDown = (e) => onPressStart(e.clientX);
-  const handleMouseMove = (e) => onPressMove(e.clientX);
-  const handleMouseUp = onPressEnd;
+  const handleMouseDown = (e) => startSwipe(e.clientX);
+  const handleMouseMove = (e) => moveSwipe(e.clientX);
+  const handleMouseUp = endSwipe;
 
-  const handleTouchStart = (e) => onPressStart(e.touches[0].clientX);
-  const handleTouchMove = (e) => onPressMove(e.touches[0].clientX);
-  const handleTouchEnd = onPressEnd;
+  const handleTouchStart = (e) => startSwipe(e.touches[0].clientX);
+  const handleTouchMove = (e) => moveSwipe(e.touches[0].clientX);
+  const handleTouchEnd = endSwipe;
 
   useEffect(() => {
-    const up = () => onPressEnd();
-    window.addEventListener("mouseup", up);
-    window.addEventListener("touchend", up);
+    const cancelSwipe = () => endSwipe();
+    window.addEventListener("mouseup", cancelSwipe);
+    window.addEventListener("touchend", cancelSwipe);
     return () => {
-      window.removeEventListener("mouseup", up);
-      window.removeEventListener("touchend", up);
+      window.removeEventListener("mouseup", cancelSwipe);
+      window.removeEventListener("touchend", cancelSwipe);
     };
-  }, [drag.active, drag.deltaX, idx]);
+  }, [swipeState.isSwiping, swipeState.movedX, currentIndex]);
 
   return (
     <div className="slider-outer">
       <div
-        className={`slider-frame ${drag.active ? "dragging" : ""}`}
-        ref={frameRef}
+        className={`slider-frame ${swipeState.isSwiping ? "dragging" : ""}`}
+        ref={sliderFrameRef}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseUp}
@@ -70,15 +81,21 @@ export default function ImageSlider({ images = [] }) {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <button className="slider-button left" onClick={prev} aria-label="Prev">
+        <button
+          className="slider-button left"
+          onClick={goToPrev}
+          aria-label="Previous image"
+        >
           ‹
         </button>
 
         <div
           className="slider-track"
           style={{
-            transform: `translateX(calc(-${idx * 100}% + ${pctOffset}%))`,
-            transition: drag.active ? "none" : "transform 300ms ease",
+            transform: `translateX(calc(-${
+              currentIndex * 100
+            }% + ${swipeOffsetPercent}%))`,
+            transition: swipeState.isSwiping ? "none" : "transform 300ms ease",
           }}
         >
           {images.map((img, i) => {
@@ -94,8 +111,8 @@ export default function ImageSlider({ images = [] }) {
 
         <button
           className="slider-button right"
-          onClick={next}
-          aria-label="Next"
+          onClick={goToNext}
+          aria-label="Next image"
         >
           ›
         </button>
@@ -105,8 +122,8 @@ export default function ImageSlider({ images = [] }) {
         {images.map((_, i) => (
           <button
             key={i}
-            className={`dot ${i === idx ? "active" : ""}`}
-            onClick={() => setIdx(i)}
+            className={`dot ${i === currentIndex ? "active" : ""}`}
+            onClick={() => setCurrentIndex(i)}
             aria-label={`Go to image ${i + 1}`}
           />
         ))}

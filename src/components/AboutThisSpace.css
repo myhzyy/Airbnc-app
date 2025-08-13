@@ -16,3 +16,7 @@
   background-color: lightgray;
   color: white;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
