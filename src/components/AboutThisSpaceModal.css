@@ -1,13 +1,11 @@
-/* Modal panel */
 .modal-card {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  height: 90%;
-  border-radius: 10px;
-  border: 2px solid black;
+  border-radius: 20px;
+  /* border: 1px solid black; */
   background: #fff;
   z-index: 9999;
   text-align: left;
@@ -18,6 +16,7 @@
 
 .modal-card,
 .modal-card * {
+  padding: 4px;
   background-color: #fff;
 }
 
