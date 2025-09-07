@@ -1,9 +1,24 @@
+import { useEffect } from "react";
 import "./AboutThisSpaceModal.css";
 
 export default function AboutThisSpaceModal({
   setShowAboutThisSpace,
   handleButtonClick,
 }) {
+  useEffect(() => {
+    // add class on mount
+    document.body.classList.add("background-modal-blur");
+    // prevent background scroll (optional)
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    // cleanup on unmount
+    return () => {
+      document.body.classList.remove("about-blur");
+      document.body.style.overflow = prev;
+    };
+  }, []);
+
   return (
     <div className="modal-card">
       <div className="modal-card-container">

@@ -4,12 +4,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  height: 90%;
   border-radius: 20px;
-  /* border: 1px solid black; */
+  border: 0.5px solid black;
   background: #fff;
   z-index: 9999;
   text-align: left;
-
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -33,4 +33,11 @@
   font-size: 20px;
   margin-bottom: 5px;
   border: none;
+}
+
+@media (min-width: 850px) {
+  .modal-card {
+    max-width: 50%;
+    height: 80%;
+  }
 }

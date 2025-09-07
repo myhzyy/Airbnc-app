@@ -20,6 +20,7 @@ export default function PropertyPage({ user }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [images, setImages] = useState([]);
   const [showAboutThisSpace, setShowAboutThisSpace] = useState(true);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -48,71 +49,73 @@ export default function PropertyPage({ user }) {
 
   return (
     <>
-      <Header user={user} />
-      <div className="property-page-container">
-        {isLoggedIn && (
-          <ToastLogIn message="Oops!... looks like you're not logged in" />
-        )}
+      <div className={`background-modalblur ${aboutOpen ? "is-blurred" : ""}`}>
+        <Header user={user} />
+        <div className="property-page-container">
+          {isLoggedIn && (
+            <ToastLogIn message="Oops!... looks like you're not logged in" />
+          )}
 
-        {images.length > 0 && <ImageSlider images={images} />}
+          {images.length > 0 && <ImageSlider images={images} />}
 
-        <div className="property-info-section">
-          <h1 className="property-info-header">{property.property_name}</h1>
-          {/* <h2>{property.description}</h2> */}
-          <h3>{property.location}</h3>
-          <p>£{property.price_per_night}</p>
+          <div className="property-info-section">
+            <h1 className="property-info-header">{property.property_name}</h1>
+            {/* <h2>{property.description}</h2> */}
+            <h3>{property.location}</h3>
+            <p>£{property.price_per_night}</p>
+          </div>
         </div>
-      </div>
 
-      <div className="about-this-space">
-        {showAboutThisSpace && <AboutThisSpace />}
-      </div>
-
-      <hr className="section-divider" />
-
-      <div className="host-and-amenities">
-        <PropertyAmenities />
-      </div>
-
-      <div className="reviews-and-calendar">
-        <PropertyReviews />
+        <div className="about-this-space">
+          <AboutThisSpace onOpen={() => setAboutOpen(true)} />
+        </div>
 
         <hr className="section-divider" />
 
-        <div className="calendar-center-wrapper">
-          <BookingCalendar
-            setIsLoggedIn={setIsLoggedIn}
-            user={user}
-            setShowCalendar={() => {}}
-            propertyId={property.property_id}
-          />
+        <div className="host-and-amenities">
+          <PropertyAmenities />
         </div>
-      </div>
 
-      <div className="hostedBy-wrapper">
-        <HostedBy id={id} />
-      </div>
+        <div className="reviews-and-calendar">
+          <PropertyReviews />
 
-      <div className="section-heading">
-        <p>Where you'll stay!</p>
-        <p className="section-location">{property.location}</p>
-      </div>
+          <hr className="section-divider" />
 
-      <div className="map-container-wrapper">
-        <div className="map-container">
-          <PropertyMap
-            latitude={property.latitude}
-            longitude={property.longitude}
-          />
+          <div className="calendar-center-wrapper">
+            <BookingCalendar
+              setIsLoggedIn={setIsLoggedIn}
+              user={user}
+              setShowCalendar={() => {}}
+              propertyId={property.property_id}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="section-heading"></div>
+        <div className="hostedBy-wrapper">
+          <HostedBy id={id} />
+        </div>
 
-      {/* <img className="small-screen-map" src={smallerMap} alt="" /> */}
+        <div className="section-heading">
+          <p>Where you'll stay!</p>
+          <p className="section-location">{property.location}</p>
+        </div>
 
-      <div className="map-fallback-message">
-        Map available on larger devices!
+        <div className="map-container-wrapper">
+          <div className="map-container">
+            <PropertyMap
+              latitude={property.latitude}
+              longitude={property.longitude}
+            />
+          </div>
+        </div>
+
+        <div className="section-heading"></div>
+
+        {/* <img className="small-screen-map" src={smallerMap} alt="" /> */}
+
+        <div className="map-fallback-message">
+          Map available on larger devices!
+        </div>
       </div>
     </>
   );

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import AboutThisSpaceModal from "./AboutThisSpaceModal";
 import "./AboutThisSpace.css";
 
-export default function AboutThisSpace() {
-  const [showAboutThisSpace, setShowAboutThisSpace] = useState(false);
+export default function AboutThisSpace({ onOpen }) {
+  const [showAboutThisSpace, setShowAboutThisSpace] = useState(false); // opens model
   const [isModalOpen, setisModalOpen] = useState(true);
 
   const handleButtonClick = () => {
@@ -26,7 +26,11 @@ export default function AboutThisSpace() {
           setShowAboutThisSpace={setShowAboutThisSpace}
           handleButtonClick={handleButtonClick}
         />
-      )) || <p className="about-this-space-header">About this space</p>}
+      )) || (
+        <p className="about-this-space-header" onClick={onOpen}>
+          About this space
+        </p>
+      )}
     </div>
   );
 }
