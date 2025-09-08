@@ -66,9 +66,9 @@ export default function PropertyPage({ user }) {
           </div>
         </div>
 
-        <div className="about-this-space">
+        {/* <div className="about-this-space">
           <AboutThisSpace onOpen={() => setAboutOpen(true)} />
-        </div>
+        </div> */}
 
         <hr className="section-divider" />
 
